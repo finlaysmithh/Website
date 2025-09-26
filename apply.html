@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apply | Experience4Grads</title>
+  <!-- Base URL ensures that relative links resolve when opened from a file viewer -->
+  <base href="./">
+  <!-- Reuse the global style for colours and typography -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Container styling */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid #e7ecf3;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .card h1,
+    .card h2 {
+      margin-top: 0;
+      color: var(--primary-blue);
+    }
+    .meta {
+      opacity: 0.8;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #cfd8e3;
+      border-radius: 8px;
+      font: inherit;
+    }
+    textarea {
+      min-height: 140px;
+    }
+    label {
+      font-weight: 600;
+    }
+    .row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <!-- Inline sub navigation bar to maintain colour theme even when the page is opened directly from a ZIP. -->
+  <header class="subnav">
+    <a href="index.html" class="brand">Experience4Grads</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Micro‑Internships</a>
+      <a href="skills.html">Skills &amp; CV</a>
+    </nav>
+  </header>
+  <style>
+    /* Mini navigation bar styling – gradient background matching the main site theme */
+    .subnav {
+      background: linear-gradient(135deg, #173a60, #eb522b);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .subnav a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 1rem;
+      font-weight: 600;
+    }
+    .subnav a:hover {
+      text-decoration: underline;
+    }
+    .brand {
+      font-size: 1.05rem;
+    }
+  </style>
+  <main class="container">
+    <!-- Back links for easy navigation -->
+    <p style="margin-bottom: 1rem;"><a href="jobs.html">← Back to Jobs</a> | <a href="index.html">Home</a></p>
+    <!-- Job details will be rendered here -->
+    <div id="job" class="card"></div>
+    <!-- Application form -->
+    <div class="card">
+      <form id="applyForm">
+        <h2>Apply with your CV</h2>
+        <label>
+          Full name
+          <input name="name" required>
+        </label>
+        <label>
+          Email
+          <input name="email" type="email" required>
+        </label>
+        <label>
+          Cover message
+          <textarea name="message" placeholder="Brief intro & why you're a good fit"></textarea>
+        </label>
+        <label>CV (attach after clicking Send)</label>
+        <p><small>When you click <strong>Send Application</strong>, your email app opens with all details pre‑filled. Please attach your CV before sending.</small></p>
+        <div class="row">
+          <button type="submit" class="btn btn-primary">Send Application</button>
+          <a href="jobs.html" class="btn btn-outline">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </main>
+  <script>
+    /*
+      This script pulls job data from localStorage and populates the page.
+      When the user submits the form, it constructs a mailto link to
+      the job's contact email with subject and body pre-filled and
+      navigates there (opening the email client). The user then attaches
+      their CV manually and sends the email.
+    */
+    const KEY = 'e4g_jobs_v1';
+    // Get job id from query string
+    const params = new URLSearchParams(window.location.search);
+    const jobId = params.get('id');
+    const jobContainer = document.getElementById('job');
+    // Retrieve jobs array from localStorage
+    const jobs = JSON.parse(localStorage.getItem(KEY) || '[]');
+    const job = jobs.find(j => j.id === jobId);
+    // If job isn't found, display a message
+    if (!job) {
+      jobContainer.innerHTML = '<p>Job not found. <a href="jobs.html">Back to Jobs</a></p>';
+    } else {
+      jobContainer.innerHTML = `
+        <h1>${job.title}</h1>
+        <div class="meta">${job.company || ''} · ${job.location || ''} · ${job.type || ''} · ${job.pay || ''}</div>
+        <p>${job.description || ''}</p>
+      `;
+    }
+    // Handle application form submission
+    document.getElementById('applyForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!job) return;
+      const formData = new FormData(this);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const message = (formData.get('message') || '').replace(/\n/g, '%0D%0A');
+      // Compose email subject and body
+      const subject = encodeURIComponent(`Application: ${job.title} — ${name}`);
+      const body = encodeURIComponent(
+        `Hi ${job.company},\n\n` +
+        `${formData.get('message') || ''}\n\n` +
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Role: ${job.title}\n\n` +
+        `(Attached: CV)\n`
+      );
+      const mailto = `mailto:${encodeURIComponent(job.email || 'careers@example.com')}?subject=${subject}&body=${body}`;
+      window.location.href = mailto;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Micro‑Internships | Experience4Grads</title>
+  <!-- Base URL ensures that relative links resolve when opened from a file viewer -->
+  <base href="./">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Page-specific styles for the jobs listing */
+    .jobs-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .jobs-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .jobs-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .job-card {
+      background-color: var(--white);
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .job-card h3 {
+      margin: 0 0 0.5rem;
+      color: var(--primary-blue);
+    }
+    .job-meta {
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+      color: var(--dark-gray);
+    }
+    .job-desc {
+      flex-grow: 1;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    .job-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <!-- Inline sub navigation bar to maintain colour theme even when the page is opened directly from a ZIP. -->
+  <header class="subnav">
+    <a href="index.html" class="brand">Experience4Grads</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Micro‑Internships</a>
+      <a href="skills.html">Skills &amp; CV</a>
+    </nav>
+  </header>
+  <style>
+    /* Mini navigation bar styling – gradient background matching the main site theme */
+    .subnav {
+      background: linear-gradient(135deg, #173a60, #eb522b);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .subnav a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 1rem;
+      font-weight: 600;
+    }
+    .subnav a:hover {
+      text-decoration: underline;
+    }
+    .brand {
+      font-size: 1.05rem;
+    }
+  </style>
+  <main>
+    <div class="jobs-container">
+      <p style="margin-bottom: 1rem;"><a href="index.html" class="back-link">← Back to Home</a></p>
+      <div class="jobs-header">
+        <h1>Micro‑Internships</h1>
+        <a href="post-job.html" class="btn btn-primary">+ New Post</a>
+      </div>
+      <div id="jobsList" class="jobs-list"></div>
+      <p id="noJobsMessage" style="display:none; text-align:center; opacity:0.7;">
+        No internships posted yet. <a href="post-job.html">Be the first to post one</a>.
+      </p>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 Experience4Grads. All rights reserved.</p>
+  </footer>
+  <script>
+    (function() {
+      const STORAGE_KEY = 'e4g_jobs_v1';
+      function readJobs() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        } catch (e) {
+          return [];
+        }
+      }
+      function saveJobs(list) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+      }
+      function seedDemo() {
+        const list = readJobs();
+        if (list.length === 0) {
+          const demo = [
+            {
+              id: crypto.randomUUID(),
+              title: 'Marketing Micro‑Intern',
+              company: 'Local SME',
+              location: 'Remote / Leeds',
+              pay: '£12/hr',
+              type: 'Part‑time • 6 weeks',
+              email: 'marketing@example.com',
+              description: 'Assist with content planning, basic Canva edits and campaign analytics.'
+            },
+            {
+              id: crypto.randomUUID(),
+              title: 'Data Assistant',
+              company: 'FinTech Start‑Up',
+              location: 'Hybrid – Manchester',
+              pay: '£100/day',
+              type: 'Project • 4 weeks',
+              email: 'data@example.com',
+              description: 'Clean datasets, build simple dashboards and perform QA checks.'
+            }
+          ];
+          saveJobs(demo);
+        }
+      }
+      function renderList() {
+        const list = readJobs();
+        const container = document.getElementById('jobsList');
+        const noJobsMsg = document.getElementById('noJobsMessage');
+        container.innerHTML = '';
+        if (list.length === 0) {
+          noJobsMsg.style.display = 'block';
+          return;
+        }
+        noJobsMsg.style.display = 'none';
+        list.forEach(job => {
+          const card = document.createElement('article');
+          card.className = 'job-card';
+          card.innerHTML = `
+            <h3>${job.title}</h3>
+            <div class="job-meta">${job.company} • ${job.location} • ${job.type} • ${job.pay}</div>
+            <p class="job-desc">${job.description}</p>
+            <div class="job-actions">
+              <a href="apply.html?id=${encodeURIComponent(job.id)}" class="btn btn-secondary">Apply</a>
+              <a href="post-job.html?id=${encodeURIComponent(job.id)}" class="btn btn-outline">Edit</a>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+      // Initialise list
+      seedDemo();
+      renderList();
+    })();
+  </script>
+</body>
+</html>

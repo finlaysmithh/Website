@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post a Micro‑Internship | Experience4Grads</title>
+  <!-- Base URL ensures that relative links resolve when opened from a file viewer -->
+  <base href="./">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Page-specific styles for the post/edit form */
+    .post-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .post-form {
+      background-color: var(--white);
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .post-form .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .post-form label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+    .post-form input,
+    .post-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccd6dd;
+      border-radius: 4px;
+      margin-top: 0.25rem;
+      font: inherit;
+    }
+    .post-form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    .post-form-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Inline sub navigation bar to maintain colour theme even when the page is opened directly from a ZIP. -->
+  <header class="subnav">
+    <a href="index.html" class="brand">Experience4Grads</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Micro‑Internships</a>
+      <a href="skills.html">Skills &amp; CV</a>
+    </nav>
+  </header>
+  <style>
+    /* Mini navigation bar styling – gradient background matching the main site theme */
+    .subnav {
+      background: linear-gradient(135deg, #173a60, #eb522b);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .subnav a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 1rem;
+      font-weight: 600;
+    }
+    .subnav a:hover {
+      text-decoration: underline;
+    }
+    .brand {
+      font-size: 1.05rem;
+    }
+  </style>
+  <main>
+    <div class="post-container">
+      <p style="margin-bottom: 1rem;"><a href="jobs.html">← Back to Jobs</a> | <a href="index.html">Home</a></p>
+      <h1 id="pageTitle">Post a Micro‑Internship</h1>
+      <form id="postForm" class="post-form">
+        <input type="hidden" name="id" id="jobId" />
+        <div class="form-row">
+          <div style="flex:1; min-width:200px;">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required>
+          </div>
+          <div style="flex:1; min-width:200px;">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div style="flex:1; min-width:200px;">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" placeholder="Remote, Hybrid, City" required>
+          </div>
+          <div style="flex:1; min-width:200px;">
+            <label for="pay">Compensation</label>
+            <input type="text" id="pay" name="pay" placeholder="e.g., £12/hr or £500 per project">
+          </div>
+        </div>
+        <div class="form-row">
+          <div style="flex:1; min-width:200px;">
+            <label for="type">Type</label>
+            <input type="text" id="type" name="type" placeholder="Part‑time • 6 weeks" required>
+          </div>
+          <div style="flex:1; min-width:200px;">
+            <label for="email">Applications Email</label>
+            <input type="email" id="email" name="email" placeholder="e.g., internships@example.com" required>
+          </div>
+        </div>
+        <label for="description">Description</label>
+        <textarea id="description" name="description" placeholder="Describe tasks, timeline and expectations." required></textarea>
+        <div class="post-form-actions">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <a href="jobs.html" class="btn btn-outline">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 Experience4Grads. All rights reserved.</p>
+  </footer>
+  <script>
+    (function() {
+      const STORAGE_KEY = 'e4g_jobs_v1';
+      function getJobs() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        } catch (e) {
+          return [];
+        }
+      }
+      function setJobs(list) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+      }
+      // Read query parameter for editing existing job
+      const params = new URLSearchParams(location.search);
+      const jobId = params.get('id');
+      const pageTitle = document.getElementById('pageTitle');
+      const form = document.getElementById('postForm');
+      if (jobId) {
+        pageTitle.textContent = 'Edit Micro‑Internship';
+        const jobs = getJobs();
+        const job = jobs.find(j => j.id === jobId);
+        if (job) {
+          form.title.value = job.title;
+          form.company.value = job.company;
+          form.location.value = job.location;
+          form.pay.value = job.pay || '';
+          form.type.value = job.type || '';
+          form.email.value = job.email || '';
+          form.description.value = job.description || '';
+          form.id.value = job.id;
+        }
+      }
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form).entries());
+        let jobs = getJobs();
+        if (data.id) {
+          // update existing
+          const idx = jobs.findIndex(j => j.id === data.id);
+          if (idx > -1) {
+            jobs[idx] = data;
+          }
+        } else {
+          // new job
+          data.id = crypto.randomUUID();
+          jobs.unshift(data);
+        }
+        setJobs(jobs);
+        // Redirect to jobs list
+        location.href = 'jobs.html';
+      });
+    })();
+  </script>
+</body>
+</html>
