@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Database &amp; Cloud Technologies Training Pack | Experience4Grads</title>
+  <base href="./">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #5d7590, #F1866B);
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .subnav {
+      background: linear-gradient(135deg, #5d7590, #F1866B);
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .subnav a {
+      color: #fff;
+      margin-right: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .subnav a:hover { text-decoration: underline; }
+    .brand { font-size: 1.05rem; }
+    .page-wrapper {
+      max-width: 900px;
+      margin: 2rem auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      border: 4px solid transparent;
+      border-image: linear-gradient(45deg, #5d7590, #F1866B) 1;
+    }
+    .page-wrapper h1 {
+      text-align: center;
+      margin-top: 0;
+      color: #173a60;
+      margin-bottom: 1.5rem;
+    }
+    .card {
+      background-color: #f8f9fa;
+      border: 1px solid #e0e5ec;
+      border-radius: 6px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      color: #173a60;
+    }
+    .card h3 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      color: #173a60;
+      font-size: 1rem;
+    }
+    .tools-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .tools-list li {
+      background-color: #eaeff4;
+      padding: 0.3rem 0.6rem;
+      border-radius: 3px;
+      font-size: 0.9rem;
+      color: #173a60;
+    }
+  </style>
+</head>
+<body>
+<header class="subnav">
+  <a href="index.html" class="brand">Experience4Grads</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="jobs.html">Micro‑Internships</a>
+    <a href="skills.html">Skills &amp; CV</a>
+  </nav>
+</header>
+<main>
+  <div class="page-wrapper">
+    <h1>Database &amp; Cloud Technologies</h1>
+    <div class="card">
+      <h2>Goal (≈10 hours)</h2>
+      <p>Design a relational schema, experiment with a NoSQL database and deploy a small application or database to the cloud, then compare these technologies.</p>
+      <h3>Suggested tools:</h3>
+      <ul class="tools-list">
+        <li>ER diagram tool (draw.io, Lucidchart)</li>
+        <li>SQL database (SQLite, MySQL, PostgreSQL)</li>
+        <li>NoSQL database (MongoDB, DynamoDB)</li>
+        <li>Cloud platform (AWS/Azure free tier)</li>
+        <li>ChatGPT</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Guided tasks</h2>
+      <ol style="padding-left:1.25rem; line-height:1.5;">
+        <li><strong>Design a relational database.</strong> Choose a domain (e.g., library, inventory, clinic) and draw an ER diagram showing tables and relationships. Implement the schema in your chosen SQL database and populate each table with realistic sample data. <em>Tip:</em> Use foreign keys to enforce integrity and ask ChatGPT for help if you’re unsure about cardinality.</li>
+        <li><strong>Explore a NoSQL database.</strong> Install or use an online NoSQL database like MongoDB Atlas. Create a collection for the same domain and perform CRUD operations (create, read, update, delete). Note how the flexible schema differs from your relational design. <em>Tip:</em> Use aggregation pipelines or simple queries to retrieve documents and compare results.</li>
+        <li><strong>Deploy to the cloud.</strong> Sign up for a free tier on AWS or Azure. Host either your relational database (e.g., using RDS/Azure SQL) or a small application that connects to it. Document the steps with screenshots and note any configuration hurdles. <em>Tip:</em> Consider deploying via Netlify or Heroku for the application layer if easier.</li>
+        <li><strong>Write a comparison report.</strong> Compare relational and NoSQL databases in terms of schema design, scalability, consistency and typical use cases. Summarise the pros and cons of deploying databases and applications in the cloud. Include your own observations from the tasks. <em>Tip:</em> Use a table to present advantages and disadvantages clearly.</li>
+      </ol>
+      <p><em>Tip: Use available tutorials, sample projects or ask ChatGPT for guidance as you complete each task.</em></p>
+      <p><em>Need help getting started? Break each task down into small steps, explore free tutorials online and ask ChatGPT to explain unfamiliar concepts. Practise iteratively and document your progress as you go.</em></p>
+    </div>
+    <div class="card">
+      <h2>What to submit</h2>
+      <ul style="padding-left:1.25rem; line-height:1.5; list-style:disc;">
+        <li>Your ER diagram and SQL script</li>
+        <li>Exported collection or screenshots showing NoSQL CRUD operations</li>
+        <li>Documentation of your cloud deployment steps</li>
+        <li>Your comparison report</li>
+      </ul>
+      <p>Email all deliverables to <a href="mailto:Finlay@experience4grads.co.uk?subject=Database%20Cloud%20Submission">Finlay@experience4grads.co.uk</a>. Your work will be reviewed within 48 hours. If approved, you&rsquo;ll receive a certificate and LinkedIn endorsement.</p>
+    </div>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2025 Experience4Grads. All rights reserved.</p>
+</footer>
+</body>
+</html>

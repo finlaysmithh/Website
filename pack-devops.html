@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps &amp; Containerisation Training Pack | Experience4Grads</title>
+  <base href="./">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Apply a gentle blue–orange gradient to the body to tie into the site theme */
+    body {
+      background: linear-gradient(135deg, #5d7590, #F1866B);
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    /* Top navigation bar */
+    .subnav {
+      background: linear-gradient(135deg, #5d7590, #F1866B);
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .subnav a {
+      color: #fff;
+      margin-right: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .subnav a:hover { text-decoration: underline; }
+    .brand { font-size: 1.05rem; }
+    /* Central wrapper for the content */
+    .page-wrapper {
+      max-width: 900px;
+      margin: 2rem auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      border: 4px solid transparent;
+      border-image: linear-gradient(45deg, #5d7590, #F1866B) 1;
+    }
+    .page-wrapper h1 {
+      text-align: center;
+      margin-top: 0;
+      color: #173a60;
+      margin-bottom: 1.5rem;
+    }
+    /* Card styling for each section */
+    .card {
+      background-color: #f8f9fa;
+      border: 1px solid #e0e5ec;
+      border-radius: 6px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      color: #173a60;
+    }
+    .card h3 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      color: #173a60;
+      font-size: 1rem;
+    }
+    .tools-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .tools-list li {
+      background-color: #eaeff4;
+      padding: 0.3rem 0.6rem;
+      border-radius: 3px;
+      font-size: 0.9rem;
+      color: #173a60;
+    }
+  </style>
+</head>
+<body>
+<header class="subnav">
+  <a href="index.html" class="brand">Experience4Grads</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="jobs.html">Micro‑Internships</a>
+    <a href="skills.html">Skills &amp; CV</a>
+  </nav>
+</header>
+<main>
+  <div class="page-wrapper">
+    <h1>DevOps &amp; Containerisation</h1>
+    <!-- Goal and tools section -->
+    <div class="card">
+      <h2>Goal (≈10 hours)</h2>
+      <p>Learn how to build an application with automated testing, containerise it and deploy it on a Kubernetes cluster. This training pack introduces you to modern DevOps practices through hands‑on tasks.</p>
+      <h3>Suggested tools:</h3>
+      <ul class="tools-list">
+        <li>Git &amp; GitHub</li>
+        <li>GitHub Actions or CI service</li>
+        <li>Docker</li>
+        <li>Minikube or kind (Kubernetes)</li>
+        <li>Terminal &amp; Code editor</li>
+        <li>ChatGPT</li>
+      </ul>
+    </div>
+    <!-- Guided tasks section -->
+    <div class="card">
+      <h2>Guided tasks</h2>
+      <ol style="padding-left:1.25rem; line-height:1.5;">
+        <li><strong>Set up a CI pipeline.</strong> Create a simple application in your preferred language (e.g., Python, JavaScript). Host it in a Git repository and write a couple of unit tests. Configure a continuous integration workflow using GitHub Actions or another CI tool to run your tests on every push. <em>Tip:</em> Start with the official action templates to lint and test your project, and check the logs to debug failing steps.</li>
+        <li><strong>Containerise your application.</strong> Write a production‑grade <code>Dockerfile</code> that installs dependencies, copies your source code and defines an entrypoint. Build and run the container locally with <code>docker build</code> and <code>docker run</code>. Experiment with environment variables and mounted volumes to pass configuration. Try a multi‑stage build to reduce image size. <em>Tip:</em> Use <code>docker ps</code> and <code>docker logs</code> to inspect your running container.</li>
+        <li><strong>Deploy to a Kubernetes cluster.</strong> Use a local cluster such as Minikube or kind. Create a deployment and service YAML manifest to run your container with at least two replicas. Apply the configuration using <code>kubectl apply -f</code>, then verify with <code>kubectl get pods</code> and access your service via <code>kubectl port-forward</code>. Document the commands you used and note any errors encountered. <em>Tip:</em> Use official tutorials to understand deployments and services.</li>
+        <li><strong>Document &amp; reflect.</strong> Write a short report describing each step: setting up CI, building the Docker image and deploying to Kubernetes. Include screenshots of your CI runs, Docker commands and Kubernetes resources. Reflect on the challenges you faced and how automation improves reliability. Consider how you would extend the pipeline to continuous deployment. <em>Tip:</em> ChatGPT can help you troubleshoot error messages and suggest improvements.</li>
+      </ol>
+      <p><em>Tip: Use available tutorials, sample projects or ask ChatGPT for guidance as you complete each task.</em></p>
+      <p><em>Need help getting started? Break each task down into small steps, explore free tutorials online and ask ChatGPT to explain unfamiliar concepts. Practise iteratively and document your progress as you go.</em></p>
+    </div>
+    <!-- Submission section -->
+    <div class="card">
+      <h2>What to submit</h2>
+      <ul style="padding-left:1.25rem; line-height:1.5; list-style:disc;">
+        <li>A link to your Git repository containing the application and CI configuration</li>
+        <li>Your <code>Dockerfile</code> and any related scripts</li>
+        <li>Kubernetes YAML manifests for your deployment and service</li>
+        <li>A concise report with screenshots and reflections on the process</li>
+      </ul>
+      <p>Email your deliverables to <a href="mailto:Finlay@experience4grads.co.uk?subject=DevOps%20Training%20Pack%20Submission">Finlay@experience4grads.co.uk</a>. Your work will be reviewed within 48 hours. If approved, you&rsquo;ll receive a certificate and a LinkedIn endorsement.</p>
+    </div>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2025 Experience4Grads. All rights reserved.</p>
+</footer>
+</body>
+</html>

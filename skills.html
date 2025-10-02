@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
   <title>ATS Skills &amp; CV Optimisation | Experience4Grads</title>
   <!-- Base URL ensures that relative links resolve when opened from a file viewer -->
   <base href="./">
@@ -61,6 +62,28 @@
     /* Mini navigation bar styling – gradient background matching the main site theme */
     .subnav {
       background: linear-gradient(135deg, #173a60, #eb522b);
+=======
+  <title>ATS Skills & CV Optimisation | Experience4Grads</title>
+  <!-- Ensure relative links work when opening from a ZIP -->
+  <base href="./">
+  <!-- Optional external stylesheet if present -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Overall container with gradient border */
+    .skills-container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 2rem 2rem;
+      /* Increase border thickness for a more pronounced gradient frame */
+      border: 6px solid transparent;
+      border-image: linear-gradient(45deg, #5d7590, #F1866B) 1;
+      border-radius: 12px;
+      background-color: #fff;
+    }
+    /* Lighten the navigation bar gradient for readability */
+    .subnav {
+      background: linear-gradient(135deg, #5d7590, #F1866B);
+>>>>>>> e003143 (Initial import for experience4grads.co.uk)
       padding: 0.75rem 1rem;
       display: flex;
       align-items: center;
@@ -78,6 +101,7 @@
     .brand {
       font-size: 1.05rem;
     }
+<<<<<<< HEAD
   </style>
   <main>
     <div class="skills-container">
@@ -215,6 +239,288 @@
   </main>
   <footer>
     <p>&copy; 2025 Experience4Grads. All rights reserved.</p>
+=======
+    /* Hero section with lighter gradient and brighter text */
+    .skills-hero {
+      /* Lighten the hero gradient for improved contrast and add subtle text shadow */
+      background: linear-gradient(135deg, #7d98b4, #f7a69a);
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+      padding: 2rem;
+      border-radius: 0.75rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .skills-hero h1 {
+      margin: 0 0 0.5rem 0;
+      font-size: 2.75rem;
+      font-weight: 700;
+    }
+    .skills-hero p {
+      margin: 0;
+      line-height: 1.5;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Industry headings */
+    .industry-title {
+      /* Make section headings more prominent */
+      font-size: 2.3rem;
+      color: var(--secondary-orange);
+      margin-bottom: 0.5rem;
+    }
+    .industry-description {
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+    /* Grid layout for skill packs */
+    .skill-pack-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    /* Card styling for each pack */
+    .skill-pack-card {
+      background-color: #fafafa;
+      border: 1px solid #e0e5ec;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .skill-pack-card h4 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      color: #173a60;
+    }
+    .skill-pack-card p {
+      flex-grow: 1;
+      margin: 0 0 1rem 0;
+      font-size: 0.9rem;
+      color: #333;
+    }
+    /* Start training button inside each card */
+    .start-btn {
+      align-self: flex-start;
+      background: linear-gradient(135deg, #5d7590, #F1866B);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .start-btn a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header class="subnav">
+    <a href="index.html" class="brand">Experience4Grads</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Micro‑Internships</a>
+      <a href="skills.html">Skills &amp; CV</a>
+    </nav>
+  </header>
+  <main>
+    <div class="skills-container">
+      <section class="skills-hero">
+        <h1>ATS Skills &amp; CV Optimisation</h1>
+        <p>Prepare your CV and applications to pass Applicant Tracking Systems and stand out in the job market. Our training packs teach you how to craft ATS‑friendly CVs, tailor your applications and highlight your skills effectively.</p>
+      </section>
+      <!-- Finance & Accounting -->
+      <section class="industry-section">
+        <h2 class="industry-title">Finance &amp; Accounting</h2>
+        <p class="industry-description">These competencies span foundational tools like Excel and SQL, as well as financial reporting, cost accounting, tax preparation, financial modelling and risk management.</p>
+        <div class="skill-pack-grid">
+          <div class="skill-pack-card">
+            <h4>Microsoft Excel &amp; Advanced Spreadsheet Modelling</h4>
+            <p>Master advanced Excel functions, build dynamic spreadsheets and create data‑driven financial models.</p>
+            <div class="start-btn"><a href="pack-excel.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>SQL &amp; Big Data Analysis</h4>
+            <p>Learn to write complex SQL queries and explore big data using modern analysis techniques.</p>
+            <div class="start-btn"><a href="pack-sql.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Financial Reporting &amp; Cost Accounting</h4>
+            <p>Build accurate financial statements and perform cost analyses to support business decisions.</p>
+            <div class="start-btn"><a href="pack-financial-reporting.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Tax Preparation &amp; Planning</h4>
+            <p>Understand tax rules, prepare returns and explore planning strategies for compliance.</p>
+            <div class="start-btn"><a href="pack-tax-preparation.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Financial Modelling, Risk &amp; Investment Analysis</h4>
+            <p>Develop robust financial models and evaluate investments using DCF and risk metrics.</p>
+            <div class="start-btn"><a href="pack-financial-modeling.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Compliance, Audit &amp; Portfolio Management</h4>
+            <p>Design audit checklists, ensure regulatory compliance and manage investment portfolios.</p>
+            <div class="start-btn"><a href="pack-compliance-audit.html">Start training</a></div>
+          </div>
+        </div>
+      </section>
+      <!-- Information Technology -->
+      <section class="industry-section">
+        <h2 class="industry-title">Information Technology</h2>
+        <p class="industry-description">These skills cover programming languages, web development, frameworks, database and cloud technologies, DevOps practices and data analysis.</p>
+        <div class="skill-pack-grid">
+          <div class="skill-pack-card">
+            <h4>Programming Languages</h4>
+            <p>Practise coding fundamentals in Python, Java and C#, solving real‑world problems.</p>
+            <div class="start-btn"><a href="pack-programming.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Web Development: HTML, CSS &amp; JavaScript</h4>
+            <p>Build responsive websites from scratch using HTML, CSS and JavaScript.</p>
+            <div class="start-btn"><a href="pack-web-development.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Front‑End Frameworks</h4>
+            <p>Create an interactive application using React, Angular or Vue.js.</p>
+            <div class="start-btn"><a href="pack-frameworks.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Database &amp; Cloud Technologies</h4>
+            <p>Design databases and experiment with SQL/NoSQL and cloud services such as AWS or Azure.</p>
+            <div class="start-btn"><a href="pack-database-cloud.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>DevOps &amp; Containerisation</h4>
+            <p>Set up CI/CD pipelines and deploy services with Docker and Kubernetes.</p>
+            <div class="start-btn"><a href="pack-devops.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Cybersecurity, Data Analysis &amp; Visualisation</h4>
+            <p>Implement basic security practices, analyse datasets and create insightful visualisations.</p>
+            <div class="start-btn"><a href="pack-cybersecurity-data.html">Start training</a></div>
+          </div>
+        </div>
+      </section>
+      <!-- Healthcare -->
+      <section class="industry-section">
+        <h2 class="industry-title">Healthcare</h2>
+        <p class="industry-description">Healthcare roles emphasise numerical accuracy, life‑support techniques, infection control, emergency care, medication administration and specialist areas.</p>
+        <div class="skill-pack-grid">
+          <div class="skill-pack-card">
+            <h4>Mathematics &amp; Accurate Record Keeping</h4>
+            <p>Practise medication dosing calculations and maintain precise healthcare records.</p>
+            <div class="start-btn"><a href="pack-math-records.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>CPR, ACLS &amp; Basic Life Support</h4>
+            <p>Study life‑saving protocols and develop action plans for emergency situations.</p>
+            <div class="start-btn"><a href="pack-cpr.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Infection Control &amp; Emergency Care</h4>
+            <p>Create infection‑control procedures and plan responses to emergency scenarios.</p>
+            <div class="start-btn"><a href="pack-infection-emergency.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Medication Administration &amp; Patient Education</h4>
+            <p>Prepare medication schedules and design patient‑friendly educational materials.</p>
+            <div class="start-btn"><a href="pack-medication.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Specialisations in Healthcare</h4>
+            <p>Explore specialised care requirements across pediatrics, oncology, geriatrics and neonatal units.</p>
+            <div class="start-btn"><a href="pack-specialisations.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Team Coordination &amp; Cultural Competency</h4>
+            <p>Develop interpersonal skills and strategies for managing diverse teams and stress.</p>
+            <div class="start-btn"><a href="pack-team-coordination.html">Start training</a></div>
+          </div>
+        </div>
+      </section>
+      <!-- Art & Design -->
+      <section class="industry-section">
+        <h2 class="industry-title">Art &amp; Design</h2>
+        <p class="industry-description">The creative skills listed draw from graphic design, Adobe software, web/app development, typography, storyboarding, 3D modelling and motion graphics.</p>
+        <div class="skill-pack-grid">
+          <div class="skill-pack-card">
+            <h4>Graphic Design &amp; Adobe Creative Suite</h4>
+            <p>Design professional graphics using Illustrator, InDesign, Photoshop or free alternatives.</p>
+            <div class="start-btn"><a href="pack-graphic-design.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Web &amp; App Design (UX/UI)</h4>
+            <p>Create polished, user‑friendly websites or apps with modern UX principles.</p>
+            <div class="start-btn"><a href="pack-web-app-design.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Photo Editing &amp; Typography</h4>
+            <p>Enhance images and experiment with typography to achieve visual impact.</p>
+            <div class="start-btn"><a href="pack-photo-typography.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Storyboarding, Logos &amp; Motion Graphics</h4>
+            <p>Plan visual narratives, design logos and animate simple graphics.</p>
+            <div class="start-btn"><a href="pack-storyboarding.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>3D Modelling, Animation &amp; Video Editing</h4>
+            <p>Model and animate a 3D object and edit a short video with creative flair.</p>
+            <div class="start-btn"><a href="pack-3d-modelling.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Branding, Prototyping &amp; Client Communication</h4>
+            <p>Develop a brand identity, build prototypes and communicate effectively with clients.</p>
+            <div class="start-btn"><a href="pack-branding.html">Start training</a></div>
+          </div>
+        </div>
+      </section>
+      <!-- New Category: Professional & Communication Skills -->
+      <section class="industry-section">
+        <h2 class="industry-title">Professional &amp; Communication Skills</h2>
+        <p class="industry-description">Develop essential soft skills such as writing, presenting, collaborating, networking and time management to thrive in any workplace.</p>
+        <div class="skill-pack-grid">
+          <div class="skill-pack-card">
+            <h4>Writing &amp; Email Etiquette</h4>
+            <p>Craft clear, professional communications including emails, reports and cover letters.</p>
+            <div class="start-btn"><a href="pack-writing-communication.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Public Speaking &amp; Presentation Skills</h4>
+            <p>Plan and deliver engaging presentations with strong narrative and visuals.</p>
+            <div class="start-btn"><a href="pack-public-speaking.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Teamwork &amp; Collaboration</h4>
+            <p>Coordinate effectively with peers, manage roles and build supportive team environments.</p>
+            <div class="start-btn"><a href="pack-teamwork-collaboration.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Networking &amp; Professional Branding</h4>
+            <p>Build professional relationships online and offline, and polish your personal brand.</p>
+            <div class="start-btn"><a href="pack-networking.html">Start training</a></div>
+          </div>
+          <div class="skill-pack-card">
+            <h4>Time Management &amp; Productivity</h4>
+            <p>Adopt tools and techniques to stay organised, prioritise tasks and manage your time effectively.</p>
+            <div class="start-btn"><a href="pack-time-management.html">Start training</a></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <p style="text-align:center; margin-top:2rem;">&copy; 2025 Experience4Grads. All rights reserved.</p>
+>>>>>>> e003143 (Initial import for experience4grads.co.uk)
   </footer>
 </body>
 </html>

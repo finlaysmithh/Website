@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Front‑End Frameworks Training Pack | Experience4Grads</title>
+  <base href="./">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #5d7590, #F1866B);
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .subnav {
+      background: linear-gradient(135deg, #5d7590, #F1866B);
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .subnav a {
+      color: #fff;
+      margin-right: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .subnav a:hover { text-decoration: underline; }
+    .brand { font-size: 1.05rem; }
+    .page-wrapper {
+      max-width: 900px;
+      margin: 2rem auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      border: 4px solid transparent;
+      border-image: linear-gradient(45deg, #5d7590, #F1866B) 1;
+    }
+    .page-wrapper h1 {
+      text-align: center;
+      margin-top: 0;
+      color: #173a60;
+      margin-bottom: 1.5rem;
+    }
+    .card {
+      background-color: #f8f9fa;
+      border: 1px solid #e0e5ec;
+      border-radius: 6px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      color: #173a60;
+    }
+    .card h3 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      color: #173a60;
+      font-size: 1rem;
+    }
+    .tools-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .tools-list li {
+      background-color: #eaeff4;
+      padding: 0.3rem 0.6rem;
+      border-radius: 3px;
+      font-size: 0.9rem;
+      color: #173a60;
+    }
+  </style>
+</head>
+<body>
+<header class="subnav">
+  <a href="index.html" class="brand">Experience4Grads</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="jobs.html">Micro‑Internships</a>
+    <a href="skills.html">Skills &amp; CV</a>
+  </nav>
+</header>
+<main>
+  <div class="page-wrapper">
+    <h1>Front‑End Frameworks</h1>
+    <div class="card">
+      <h2>Goal (≈10 hours)</h2>
+      <p>Set up, build and document a single‑page application using your framework of choice (React, Angular or Vue) with proper state management and routing.</p>
+      <h3>Suggested tools:</h3>
+      <ul class="tools-list">
+        <li>Node.js &amp; npm</li>
+        <li>Create React App, Angular CLI or Vue CLI</li>
+        <li>API provider (OpenWeather, JSONPlaceholder)</li>
+        <li>ChatGPT</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Guided tasks</h2>
+      <ol style="padding-left:1.25rem; line-height:1.5;">
+        <li><strong>Set up your project.</strong> Install Node and your chosen CLI (Create React App, Angular CLI or Vue CLI). Initialise a new project, run the development server and explore the project structure. <em>Tip:</em> Use <code>npm start</code> to launch a dev server and inspect the generated code.</li>
+        <li><strong>Build a simple application.</strong> Create a small SPA such as a to‑do list, weather dashboard or contact book. Break your UI into reusable components and manage state (useState, services or stores). Fetch data from a public API to populate your app. <em>Tip:</em> Keep components small and use props to pass data; ChatGPT can help debug errors.</li>
+        <li><strong>Add routing or advanced state management.</strong> Implement navigation between at least two views using your framework’s router. Alternatively, integrate a state management library (Redux, NgRx, Pinia) to handle global state. Document how you structured your app and why you chose this approach. <em>Tip:</em> Start simple and gradually introduce libraries when the app becomes complex.</li>
+        <li><strong>Reflect on your experience.</strong> Write a brief reflection discussing what you learned about your chosen framework, the challenges you encountered and how you overcame them. Mention when you might choose this framework over others. <em>Tip:</em> Compare with plain JavaScript or other frameworks if you have experience.</li>
+      </ol>
+      <p><em>Tip: Use available tutorials, sample projects or ask ChatGPT for guidance as you complete each task.</em></p>
+      <p><em>Need help getting started? Break each task down into small steps, explore free tutorials online and ask ChatGPT to explain unfamiliar concepts. Practise iteratively and document your progress as you go.</em></p>
+    </div>
+    <div class="card">
+      <h2>What to submit</h2>
+      <ul style="padding-left:1.25rem; line-height:1.5; list-style:disc;">
+        <li>A link to your code repository (GitHub or similar) or a zipped copy of the project</li>
+        <li>A live demo URL if deployed</li>
+        <li>Your reflection document</li>
+      </ul>
+      <p>Send these to <a href="mailto:Finlay@experience4grads.co.uk?subject=Frameworks%20Submission">Finlay@experience4grads.co.uk</a>. We’ll review your work within 48 hours. If approved, you&rsquo;ll receive a certificate and LinkedIn endorsement.</p>
+    </div>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2025 Experience4Grads. All rights reserved.</p>
+</footer>
+</body>
+</html>
