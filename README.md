@@ -3,9 +3,10 @@
 **Live site:** https://experience4grads.co.uk  
 **Mirror (GitHub Pages):** https://finlaysmithh.github.io/website
 
-![Site preview](README_assets/preview.png)
 
 ---
+
+<img width="1691" height="988" alt="Screenshot 2025-10-02 at 22 57 11" src="https://github.com/user-attachments/assets/e6149e72-5835-41e8-9429-df1c0fdacd50" />
 
 ## Overview
 Experience4Grads is a fast static site showcasing skills packs and micro-work opportunities for graduates and businesses.
