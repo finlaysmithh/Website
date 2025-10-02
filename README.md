@@ -1,7 +1,7 @@
 # Experience4Grads
 
 **Live site:** https://experience4grads.co.uk  
-**Mirror (GitHub Pages):** https://finlaysmithh.github.io/website
+
 
 
 ---
