@@ -12,8 +12,10 @@
   <style>
 /* Colour palette inspired by the Experience4Grads logo */
 :root {
-  --primary-blue: #285c92;
-  --secondary-orange: #eb522b;
+  /* Dark navy blue pulled from the anchor in the logo */
+  --primary-blue: #0a4e92;
+  /* Vibrant orange from the mortarboard */
+  --secondary-orange: #e64a19;
   --light-gray: #f5f5f5;
   --dark-gray: #1c2a3a;
   --white: #ffffff;
@@ -37,7 +39,8 @@ html, body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: var(--primary-blue);
+  /* Gradient using updated primary/secondary palette */
+  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-orange));
   position: sticky;
   top: 0;
   z-index: 100;
@@ -46,8 +49,9 @@ html, body {
   /* Constrain the logo to a square container on the navigation bar.  Using
      object-fit: contain shows the entire graphic without cropping and
      prevents grey padding.  The dimensions match the nav bar height. */
-  height: 60px;
-  width: 60px;
+  /* Increase size to show the full logo clearly */
+  height: 80px;
+  width: 80px;
   object-fit: contain;
 }
 .nav-links {
@@ -67,6 +71,75 @@ html, body {
   color: var(--secondary-orange);
 }
 
+    /* Account dropdown styling */
+    .nav-account {
+      position: relative;
+      margin-left: 1rem;
+    }
+    /* Style the account button as a circular avatar.  When logged out it shows a user icon; when logged in it displays the first initial */
+    .account-btn {
+      background-color: var(--secondary-orange);
+      border: none;
+      color: var(--white);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .account-btn:hover {
+      filter: brightness(0.9);
+    }
+    .nav-account-menu {
+      position: absolute;
+      top: 110%;
+      right: 0;
+      background-color: var(--white);
+      color: var(--dark-gray);
+      border: 1px solid #e0e5ec;
+      border-radius: 6px;
+      min-width: 220px;
+      padding: 0.5rem 0;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      display: none;
+      z-index: 200;
+    }
+    .nav-account-menu a,
+    .nav-account-menu button.menu-btn {
+      display: block;
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      background: transparent;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: var(--dark-gray);
+    }
+    .nav-account-menu a:hover,
+    .nav-account-menu button.menu-btn:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* Leaderboard card styling */
+    .option-card.leaderboard {
+      background-color: var(--secondary-orange);
+      color: var(--white);
+    }
+    .option-card.leaderboard .btn {
+      background-color: var(--primary-blue);
+      color: var(--white);
+    }
+    .profile-image.trophy {
+      background-color: var(--primary-blue);
+      color: var(--secondary-orange);
+    }
+
 /* Hero section */
 .hero {
   position: relative;
@@ -75,7 +148,8 @@ html, body {
   justify-content: center;
   height: 60vh;
   padding: 0 2rem;
-  background: linear-gradient(135deg, var(--primary-blue) 60%, var(--secondary-orange) 100%);
+  /* Use updated palette for the hero gradient */
+  background: linear-gradient(135deg, var(--primary-blue) 60%, var(--secondary-orange) 120%);
   color: var(--white);
 }
 
@@ -88,7 +162,8 @@ html, body {
   align-items: center;
   justify-content: center;
   font-size: clamp(320px, 50vmin, 900px);
-  color: #eb522b;
+  /* Update watermark colour to match new orange */
+  color: var(--secondary-orange);
   opacity: 0.12;
   filter: drop-shadow(0 6px 18px rgba(0,0,0,.15));
   pointer-events: none;
@@ -281,6 +356,17 @@ section h2 {
             <li><a href="index.html#about">About</a></li>
             <li><a href="index.html#contact">Contact</a></li>
           </ul>
+    <!-- Account dropdown with login/logout -->
+    <div class="nav-account">
+      <button id="accountBtn" class="account-btn">Login</button>
+      <div id="accountMenu" class="nav-account-menu">
+        <p id="accountStatus" style="padding:0.5rem 0.75rem; font-weight: bold;">Not logged in</p>
+        <a href="skills.html">Skills</a>
+        <a href="leaderboard.html">Grad Leaderboard</a>
+        <button id="loginBtn" class="menu-btn">Login / Sign Up</button>
+        <button id="logoutBtn" class="menu-btn" style="display:none;">Logout</button>
+      </div>
+    </div>
         </nav>
       <section class="hero" id="hero">
           <div class="hero-content">
@@ -305,6 +391,14 @@ section h2 {
               <p>Gain practical experience through micro-internships and real projects offered by SMEs.</p>
               <a href="jobs.html" class="btn">Find Opportunities</a>
             </div>
+
+            <!-- New Grad Leaderboard card -->
+            <div class="option-card leaderboard">
+              <div class="profile-image trophy">🏆</div>
+              <h3>Grad Leaderboard</h3>
+              <p>Take a free 30-minute assessment to benchmark your skills, receive a personalised scorecard and see how you rank among your peers.</p>
+              <a href="leaderboard.html" class="btn">Start the Test</a>
+            </div>
           </div>
         </section>
       <section id="about" class="about-section">
@@ -324,5 +418,118 @@ section h2 {
       <footer>
         <p>&copy; 2025 Experience4Grads. All rights reserved.</p>
       </footer>
+
+  <!-- Load Netlify Identity widget for real login/signup.  When run locally this script is ignored. -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- Account management and enhanced login system -->
+  <script>
+    // Retrieve the current user email from localStorage
+    function getCurrentUser() {
+      return JSON.parse(localStorage.getItem('currentUser') || 'null');
+    }
+    // Save the current user email to localStorage
+    function setCurrentUser(email) {
+      localStorage.setItem('currentUser', JSON.stringify(email));
+    }
+    // Remove the user from storage to log out
+    function logoutUser() {
+      localStorage.removeItem('currentUser');
+    }
+    // Update the account dropdown UI based on login state
+    function updateAccountUI() {
+      const user = getCurrentUser();
+      const accountBtn = document.getElementById('accountBtn');
+      const accountStatus = document.getElementById('accountStatus');
+      const loginBtn = document.getElementById('loginBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (!accountBtn) return;
+      if (!user) {
+        // Show a generic avatar icon when logged out
+        accountBtn.textContent = '👤';
+        if (accountStatus) accountStatus.textContent = 'Not logged in';
+        if (loginBtn) loginBtn.style.display = 'block';
+        if (logoutBtn) logoutBtn.style.display = 'none';
+      } else {
+        // Display the first initial of the email in the avatar
+        const initial = user.charAt(0).toUpperCase();
+        accountBtn.textContent = initial;
+        if (accountStatus) accountStatus.textContent = 'Logged in as ' + user;
+        if (loginBtn) loginBtn.style.display = 'none';
+        if (logoutBtn) logoutBtn.style.display = 'block';
+      }
+    }
+    // Toggle visibility of the account menu
+    function toggleAccountMenu() {
+      const menu = document.getElementById('accountMenu');
+      if (menu) {
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+      }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      updateAccountUI();
+      const accountBtn = document.getElementById('accountBtn');
+      const loginBtn = document.getElementById('loginBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const menu = document.getElementById('accountMenu');
+      if (accountBtn) accountBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleAccountMenu();
+      });
+      // If Netlify Identity is available, use it for auth
+      if (typeof netlifyIdentity !== 'undefined') {
+        netlifyIdentity.on('init', user => {
+          if (user && user.email) {
+            setCurrentUser(user.email);
+          } else {
+            logoutUser();
+          }
+          updateAccountUI();
+        });
+        netlifyIdentity.on('login', user => {
+          if (user && user.email) {
+            setCurrentUser(user.email);
+          }
+          updateAccountUI();
+          netlifyIdentity.close();
+        });
+        netlifyIdentity.on('logout', () => {
+          logoutUser();
+          updateAccountUI();
+        });
+        // Initialize the widget
+        netlifyIdentity.init();
+      }
+      if (loginBtn) loginBtn.addEventListener('click', function() {
+        if (typeof netlifyIdentity !== 'undefined') {
+          // Open Netlify Identity modal
+          netlifyIdentity.open('login');
+        } else {
+          // Fallback prompt when not running on Netlify
+          const email = prompt('Please enter your email to sign in (Google/Outlook):');
+          if (email) {
+            setCurrentUser(email.trim());
+            updateAccountUI();
+            if (menu) menu.style.display = 'none';
+          }
+        }
+      });
+      if (logoutBtn) logoutBtn.addEventListener('click', function() {
+        if (typeof netlifyIdentity !== 'undefined') {
+          netlifyIdentity.logout();
+        } else {
+          logoutUser();
+          updateAccountUI();
+        }
+        if (menu) menu.style.display = 'none';
+      });
+      // Hide the account menu when clicking outside
+      document.body.addEventListener('click', function(e) {
+        const menu = document.getElementById('accountMenu');
+        if (menu && !menu.contains(e.target) && e.target !== accountBtn) {
+          menu.style.display = 'none';
+        }
+      });
+    });
+  </script>
   </body>
 </html>

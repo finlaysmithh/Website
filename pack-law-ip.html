@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intellectual Property &amp; Copyright Pack | Experience4Grads</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Base styling */
+      body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: linear-gradient(135deg, #0a4e92, #e64a19); }
+      header { display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: linear-gradient(135deg, #0a4e92, #e64a19); color: #ffffff; }
+      header img { height: 40px; }
+      header nav a { margin: 0 0.5rem; color: #ffffff; text-decoration: none; font-weight: 600; }
+      /* Container with gradient border matching the Skills page */
+      .pack-container { max-width: 1000px; margin: 2rem auto; padding: 2rem; border: 6px solid transparent; border-image: linear-gradient(45deg, #0a4e92, #e64a19) 1; border-radius: 12px; background-color: #ffffff; }
+      /* Section styling for goal, guided tasks and submission */
+      .goal, .guided, .submit { margin-bottom: 2rem; }
+      .goal h2, .guided h2, .submit h2 { color: #0a4e92; margin-top: 1.5rem; font-size: 1.5rem; }
+      .goal h3 { color: #e64a19; margin-top: 1rem; font-size: 1.2rem; }
+      .suggested-tools { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .suggested-tools li { background: #f0f8ff; border: 1px solid #e0e5ec; border-radius: 6px; padding: 0.25rem 0.5rem; font-size: 0.85rem; }
+      .guided ol { padding-left: 1.5rem; }
+      .submit ul { padding-left: 1.5rem; list-style: disc; }
+      .tip, .help { margin-top: 0.5rem; font-style: italic; color: #555; }
+      h1 { margin-top: 0; color: #0a4e92; font-size: 2rem; }
+      footer { margin-top: 3rem; padding: 1rem; text-align: center; background: #f7f7f7; }
+    </style>
+    <script>
+      // Redirect users who are not logged in or have not paid for a subscription
+      window.addEventListener('DOMContentLoaded', function () {
+        const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+        const subscribed = user && localStorage.getItem('subscriptionPaid_' + user) === 'true';
+        if (!user || !subscribed) {
+          window.location.href = 'skills.html#subscribe';
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <a href="index.html"><img src="logo.jpeg" alt="Experience4Grads logo" /></a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="jobs.html">Micro‑Internships</a>
+        <a href="skills.html">Skills &amp; CV</a>
+      </nav>
+    </header>
+    <main>
+      <div class="pack-container">
+        <h1>Intellectual Property &amp; Copyright</h1>
+        <p>This pack explores the different types of intellectual property (IP) and how to protect creative works. You will learn the processes for obtaining rights, enforcing them and advising clients on IP strategy.</p>
+        <section class="goal">
+          <h2>Goal (≈10 hours)</h2>
+          <p>In roughly ten hours you will investigate the four main categories of IP, practise drafting applications and learn how to apply fair use doctrines. This structured set of activities will equip you to guide clients through the basics of IP protection.</p>
+          <h3>Suggested tools</h3>
+          <ul class="suggested-tools">
+            <li>IP databases (e.g., WIPO Global Brand Database, UK IPO, USPTO)</li>
+            <li>Trademark and patent application forms</li>
+            <li>Copyright guidelines (fair use / fair dealing)</li>
+            <li>Online IP encyclopedias and glossaries</li>
+            <li>Confidentiality agreement templates</li>
+          </ul>
+        </section>
+        <section class="guided">
+          <h2>Guided tasks</h2>
+          <ol>
+            <li><strong>IP identification:</strong> List examples of copyrights, trademarks, patents and trade secrets from everyday life. Briefly describe what makes each item fall into its respective category.</li>
+            <li><strong>Trademark application:</strong> Create a fictional brand name and draft the key information required for a trademark application, including the classes of goods/services and a description of the mark.</li>
+            <li><strong>Copyright case summary:</strong> Select a notable copyright infringement case. Summarise the facts, legal issues and outcome, and explain the court’s reasoning.</li>
+            <li><strong>Fair use analysis:</strong> Analyse a creative work (such as a song or film clip) to determine whether using a portion of it in a presentation would qualify as fair use. Discuss the relevant factors.</li>
+            <li><strong>IP protection plan:</strong> Draft a short guideline for a start‑up on how to protect its IP assets, covering registrations, monitoring, enforcement and confidentiality measures.</li>
+          </ol>
+          <p class="tip">Tip: Spread the research and drafting tasks across several sessions. This allows you to revisit your notes with fresh eyes and refine your understanding of IP concepts.</p>
+          <p class="help">Need help getting started? Break each task into smaller steps, explore online tutorials on filing applications and ask ChatGPT to clarify unfamiliar legal concepts. Practise iteratively and document your progress.</p>
+        </section>
+        <section class="submit">
+          <h2>What to submit</h2>
+          <ul>
+            <li>Your list of IP examples with explanations</li>
+            <li>A drafted trademark application summary</li>
+            <li>A case summary of the chosen copyright case</li>
+            <li>Your fair use analysis notes</li>
+            <li>An IP protection plan for a start‑up</li>
+          </ul>
+          <p>Email your work to <a href="mailto:Finlay@experience4grads.co.uk">Finlay@experience4grads.co.uk</a>. We’ll review your submission within 48 hours. If approved, you’ll receive a certificate and a LinkedIn endorsement.</p>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; <span id="year"></span> Experience4Grads – All rights reserved.</p>
+    </footer>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

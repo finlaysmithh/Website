@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sector‑Specific Quizzes &amp; Leaderboards | Experience4Grads</title>
+  <style>
+    :root {
+      --primary-blue: #0a4e92;
+      --secondary-orange: #e64a19;
+      --light-bg: #f7f9fc;
+      --dark-text: #1c2a3a;
+      --highlight: #d4af37;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--light-bg);
+      color: var(--dark-text);
+      scroll-behavior: smooth;
+    }
+    /* Navigation bar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-orange));
+      color: #fff;
+    }
+    .navbar .logo-link img {
+      height: 50px;
+      width: auto;
+    }
+    .navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .navbar .nav-links a:hover {
+      text-decoration: underline;
+    }
+    /* Main container with gradient border */
+    .main-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      border: 8px solid transparent;
+      border-image: linear-gradient(45deg, var(--primary-blue), var(--secondary-orange)) 1;
+      border-radius: 12px;
+      background-color: #fff;
+      padding: 2rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    h1 {
+      margin-top: 0;
+      text-align: center;
+      color: var(--primary-blue);
+    }
+
+    /* Decorative header card for the page title and intro */
+    .header-card {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-orange));
+      padding: 1.5rem;
+      border-radius: 8px;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* Override heading and paragraph colours within the header card to ensure sufficient contrast */
+    .header-card h1 {
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    .header-card p {
+      color: #f9fafa;
+    }
+    h2 {
+      color: var(--secondary-orange);
+      margin-top: 1rem;
+    }
+    details {
+      margin-bottom: 2rem;
+      border: 2px solid var(--primary-blue);
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #fff;
+    }
+    details summary {
+      cursor: pointer;
+      padding: 0.75rem 1rem;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-orange));
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.05rem;
+      border-radius: 4px;
+    }
+    details[open] summary {
+      border-bottom: 2px solid var(--primary-blue);
+    }
+    .section-content {
+      padding: 1rem;
+      background-color: var(--light-bg);
+    }
+    table.leaderboard {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+    }
+    table.leaderboard th, table.leaderboard td {
+      border: 1px solid #e0e5ec;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    table.leaderboard th {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-orange));
+      color: #fff;
+    }
+    table.leaderboard tr:nth-child(even) {
+      background-color: #fff;
+    }
+    .standout {
+      font-weight: bold;
+      color: var(--highlight);
+    }
+    form {
+      margin-bottom: 1rem;
+    }
+    form label {
+      display: block;
+      margin-top: 0.75rem;
+      font-weight: 600;
+    }
+    form input[type="text"],
+    form input[type="file"] {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-top: 0.25rem;
+    }
+    form input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+    form button {
+      margin-top: 0.75rem;
+      background-color: var(--primary-blue);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    form button:hover {
+      background-color: #083a6d;
+    }
+    .timer {
+      font-weight: bold;
+      color: var(--secondary-orange);
+      text-align: right;
+      margin-bottom: 1rem;
+    }
+    .option-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      margin: 0.25rem 0;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #fff;
+      cursor: pointer;
+    }
+    .option-btn.selected {
+      background-color: var(--primary-blue);
+      color: #fff;
+    }
+    .navigation-btns {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+    .navigation-btns button {
+      background-color: var(--secondary-orange);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .navigation-btns button:hover {
+      background-color: #c03515;
+    }
+    .quiz-section {
+      margin-top: 1rem;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="logo-link"><img src="logo.jpeg" alt="Experience4Grads Logo"></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="micro.html">Micro‑Internships</a></li>
+      <li><a href="skills.html">Skills &amp; CV</a></li>
+      <li><a href="#">Leaderboards &amp; Tests</a></li>
+    </ul>
+  </nav>
+  <div class="main-container">
+    <!-- Decorative header card containing the title and introduction -->
+    <div class="header-card">
+      <h1 style="margin-top:0; margin-bottom:0.5rem;">Sector‑Specific Quizzes &amp; Leaderboards</h1>
+      <p style="margin:0; font-size:1rem; line-height:1.4;">
+        Welcome to the Experience4Grads leaderboards. Challenge yourself with our timed, sector‑specific quizzes and see how you rank against other ambitious graduates. Top performers can showcase their scores to prospective employers and reference their achievements on their CVs.
+      </p>
+    </div>
+
+    <!-- Finance Section -->
+    <details open>
+      <summary>Finance Quiz &amp; Leaderboard</summary>
+      <div class="section-content">
+        <h2>Finance Leaderboard</h2>
+        <table class="leaderboard">
+          <thead>
+            <tr><th>Name</th><th>CV</th><th>Score</th></tr>
+          </thead>
+          <tbody id="leaderboardBodyFinance"></tbody>
+        </table>
+        <form id="financeForm">
+          <label for="financeName">Name</label>
+          <input type="text" id="financeName" required>
+          <label for="financeCV">Upload CV</label>
+          <input type="file" id="financeCV" accept=".pdf,.doc,.docx" required>
+          <label><input type="checkbox" id="financeConsent" required> I consent to have my results shown on the leaderboard</label>
+          <button type="submit">Start Finance Quiz</button>
+        </form>
+        <div id="financeQuiz" class="quiz-section hidden">
+          <div class="timer" id="financeTimer"></div>
+          <div id="financeQuestion"></div>
+          <div id="financeOptions"></div>
+          <div class="navigation-btns">
+            <button id="financePrevBtn">Previous</button>
+            <button id="financeNextBtn">Next</button>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Law Section -->
+    <details>
+      <summary>Law Quiz &amp; Leaderboard</summary>
+      <div class="section-content">
+        <h2>Law Leaderboard</h2>
+        <table class="leaderboard">
+          <thead>
+            <tr><th>Name</th><th>CV</th><th>Score</th></tr>
+          </thead>
+          <tbody id="leaderboardBodyLaw"></tbody>
+        </table>
+        <form id="lawForm">
+          <label for="lawName">Name</label>
+          <input type="text" id="lawName" required>
+          <label for="lawCV">Upload CV</label>
+          <input type="file" id="lawCV" accept=".pdf,.doc,.docx" required>
+          <label><input type="checkbox" id="lawConsent" required> I consent to have my results shown on the leaderboard</label>
+          <button type="submit">Start Law Quiz</button>
+        </form>
+        <div id="lawQuiz" class="quiz-section hidden">
+          <div class="timer" id="lawTimer"></div>
+          <div id="lawQuestion"></div>
+          <div id="lawOptions"></div>
+          <div class="navigation-btns">
+            <button id="lawPrevBtn">Previous</button>
+            <button id="lawNextBtn">Next</button>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- IT Section -->
+    <details>
+      <summary>IT Quiz &amp; Leaderboard</summary>
+      <div class="section-content">
+        <h2>IT Leaderboard</h2>
+        <table class="leaderboard">
+          <thead>
+            <tr><th>Name</th><th>CV</th><th>Score</th></tr>
+          </thead>
+          <tbody id="leaderboardBodyIT"></tbody>
+        </table>
+        <form id="itForm">
+          <label for="itName">Name</label>
+          <input type="text" id="itName" required>
+          <label for="itCV">Upload CV</label>
+          <input type="file" id="itCV" accept=".pdf,.doc,.docx" required>
+          <label><input type="checkbox" id="itConsent" required> I consent to have my results shown on the leaderboard</label>
+          <button type="submit">Start IT Quiz</button>
+        </form>
+        <div id="itQuiz" class="quiz-section hidden">
+          <div class="timer" id="itTimer"></div>
+          <div id="itQuestion"></div>
+          <div id="itOptions"></div>
+          <div class="navigation-btns">
+            <button id="itPrevBtn">Previous</button>
+            <button id="itNextBtn">Next</button>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Healthcare Section -->
+    <details>
+      <summary>Healthcare Quiz &amp; Leaderboard</summary>
+      <div class="section-content">
+        <h2>Healthcare Leaderboard</h2>
+        <table class="leaderboard">
+          <thead>
+            <tr><th>Name</th><th>CV</th><th>Score</th></tr>
+          </thead>
+          <tbody id="leaderboardBodyHealthcare"></tbody>
+        </table>
+        <form id="healthcareForm">
+          <label for="healthcareName">Name</label>
+          <input type="text" id="healthcareName" required>
+          <label for="healthcareCV">Upload CV</label>
+          <input type="file" id="healthcareCV" accept=".pdf,.doc,.docx" required>
+          <label><input type="checkbox" id="healthcareConsent" required> I consent to have my results shown on the leaderboard</label>
+          <button type="submit">Start Healthcare Quiz</button>
+        </form>
+        <div id="healthcareQuiz" class="quiz-section hidden">
+          <div class="timer" id="healthcareTimer"></div>
+          <div id="healthcareQuestion"></div>
+          <div id="healthcareOptions"></div>
+          <div class="navigation-btns">
+            <button id="healthcarePrevBtn">Previous</button>
+            <button id="healthcareNextBtn">Next</button>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Art & Design Section -->
+    <details>
+      <summary>Art &amp; Design Quiz &amp; Leaderboard</summary>
+      <div class="section-content">
+        <h2>Art &amp; Design Leaderboard</h2>
+        <table class="leaderboard">
+          <thead>
+            <tr><th>Name</th><th>CV</th><th>Score</th></tr>
+          </thead>
+          <tbody id="leaderboardBodyArt"></tbody>
+        </table>
+        <form id="artForm">
+          <label for="artName">Name</label>
+          <input type="text" id="artName" required>
+          <label for="artCV">Upload CV</label>
+          <input type="file" id="artCV" accept=".pdf,.doc,.docx" required>
+          <label><input type="checkbox" id="artConsent" required> I consent to have my results shown on the leaderboard</label>
+          <button type="submit">Start Art &amp; Design Quiz</button>
+        </form>
+        <div id="artQuiz" class="quiz-section hidden">
+          <div class="timer" id="artTimer"></div>
+          <div id="artQuestion"></div>
+          <div id="artOptions"></div>
+          <div class="navigation-btns">
+            <button id="artPrevBtn">Previous</button>
+            <button id="artNextBtn">Next</button>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Communication Section -->
+    <details>
+      <summary>Communication Quiz &amp; Leaderboard</summary>
+      <div class="section-content">
+        <h2>Communication Leaderboard</h2>
+        <table class="leaderboard">
+          <thead>
+            <tr><th>Name</th><th>CV</th><th>Score</th></tr>
+          </thead>
+          <tbody id="leaderboardBodyComm"></tbody>
+        </table>
+        <form id="commForm">
+          <label for="commName">Name</label>
+          <input type="text" id="commName" required>
+          <label for="commCV">Upload CV</label>
+          <input type="file" id="commCV" accept=".pdf,.doc,.docx" required>
+          <label><input type="checkbox" id="commConsent" required> I consent to have my results shown on the leaderboard</label>
+          <button type="submit">Start Communication Quiz</button>
+        </form>
+        <div id="commQuiz" class="quiz-section hidden">
+          <div class="timer" id="commTimer"></div>
+          <div id="commQuestion"></div>
+          <div id="commOptions"></div>
+          <div class="navigation-btns">
+            <button id="commPrevBtn">Previous</button>
+            <button id="commNextBtn">Next</button>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+  <script>
+    // Generic initialization function for sector quizzes
+    function initSectorQuiz(config) {
+      const {key, formId, quizId, leaderboardBodyId, nameId, cvId, consentId, timerId, questionId, optionsId, prevBtnId, nextBtnId, questions} = config;
+      const leaderboardBody = document.getElementById(leaderboardBodyId);
+      const form = document.getElementById(formId);
+      const quizSection = document.getElementById(quizId);
+      const nameInput = document.getElementById(nameId);
+      const cvInput = document.getElementById(cvId);
+      const consentInput = document.getElementById(consentId);
+      const timerDisplay = document.getElementById(timerId);
+      const questionContainer = document.getElementById(questionId);
+      const optionsContainer = document.getElementById(optionsId);
+      const prevBtn = document.getElementById(prevBtnId);
+      const nextBtn = document.getElementById(nextBtnId);
+      let currentQuestion = 0;
+      // This array will store the user's selected option indices per question
+      let answers = Array(questions.length).fill(null);
+      let timerInterval;
+      const totalTime = 15 * 60;
+      let timeLeft = totalTime;
+      let currentPlayer = null;
+      // Create a separate copy of the questions with shuffled options. This ensures
+      // the correct answer isn't always in the same position. The structure
+      // consists of { text, options: [string,...], answer: <index> } for each question.
+      let quizQuestions = [];
+      function loadLeaderboard() {
+        const stored = localStorage.getItem('quizResults_' + key);
+        const results = stored ? JSON.parse(stored) : [];
+        results.sort((a, b) => b.score - a.score);
+        leaderboardBody.innerHTML = '';
+        results.forEach(entry => {
+          const tr = document.createElement('tr');
+          const nameTd = document.createElement('td');
+          nameTd.textContent = entry.name;
+          tr.appendChild(nameTd);
+          const cvTd = document.createElement('td');
+          const cvLink = document.createElement('a');
+          cvLink.textContent = entry.cvName;
+          cvLink.href = entry.cvData;
+          cvLink.target = '_blank';
+          cvLink.setAttribute('download', entry.cvName);
+          cvTd.appendChild(cvLink);
+          tr.appendChild(cvTd);
+          const scoreTd = document.createElement('td');
+          scoreTd.textContent = Math.round(entry.score) + '%';
+          if (entry.score >= 70) {
+            scoreTd.classList.add('standout');
+          }
+          tr.appendChild(scoreTd);
+          leaderboardBody.appendChild(tr);
+        });
+      }
+      function showQuestion() {
+        // Use the shuffled quizQuestions array for rendering
+        const qObj = quizQuestions[currentQuestion];
+        questionContainer.textContent = 'Question ' + (currentQuestion + 1) + ' of ' + quizQuestions.length + ': ' + qObj.text;
+        optionsContainer.innerHTML = '';
+        qObj.options.forEach((opt, idx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = opt;
+          // Apply selected class based on stored answer index
+          btn.className = 'option-btn' + (answers[currentQuestion] === idx ? ' selected' : '');
+          btn.addEventListener('click', () => {
+            answers[currentQuestion] = idx;
+            const allBtns = optionsContainer.querySelectorAll('.option-btn');
+            allBtns.forEach((b, i) => {
+              if (i === idx) b.classList.add('selected'); else b.classList.remove('selected');
+            });
+          });
+          optionsContainer.appendChild(btn);
+        });
+        prevBtn.disabled = currentQuestion === 0;
+        nextBtn.textContent = currentQuestion === quizQuestions.length - 1 ? 'Submit' : 'Next';
+      }
+      function updateTimer() {
+        timeLeft--;
+        const minutes = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+        const seconds = String(timeLeft % 60).padStart(2, '0');
+        timerDisplay.textContent = 'Time left: ' + minutes + ':' + seconds;
+        if (timeLeft <= 0) {
+          finishQuiz();
+        }
+      }
+      function startQuiz(player) {
+        currentPlayer = player;
+        form.style.display = 'none';
+        quizSection.classList.remove('hidden');
+        currentQuestion = 0;
+        // Reset answer array
+        answers = Array(questions.length).fill(null);
+        // Create a new set of shuffled questions for this quiz instance
+        quizQuestions = questions.map((q) => {
+          // Pair each option with whether it is correct
+          const optionPairs = q.options.map((text, idx) => ({ text, isCorrect: idx === q.answer }));
+          // Shuffle the option pairs array
+          for (let i = optionPairs.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [optionPairs[i], optionPairs[j]] = [optionPairs[j], optionPairs[i]];
+          }
+          return {
+            text: q.text,
+            options: optionPairs.map(p => p.text),
+            // New answer index is location of the correct option after shuffling
+            answer: optionPairs.findIndex(p => p.isCorrect)
+          };
+        });
+        timeLeft = totalTime;
+        showQuestion();
+        timerDisplay.textContent = '';
+        timerInterval = setInterval(updateTimer, 1000);
+        updateTimer();
+      }
+      function finishQuiz() {
+        clearInterval(timerInterval);
+        // Calculate score based on shuffled quizQuestions
+        const correctCount = answers.reduce((sum, ans, idx) => sum + (ans === quizQuestions[idx].answer ? 1 : 0), 0);
+        const score = (correctCount / quizQuestions.length) * 100;
+        const cvFile = currentPlayer.cvFile;
+        const reader = new FileReader();
+        reader.onload = () => {
+          const existing = localStorage.getItem('quizResults_' + key);
+          const results = existing ? JSON.parse(existing) : [];
+          results.push({ name: currentPlayer.name, cvName: currentPlayer.cvName, cvData: reader.result, score: score });
+          localStorage.setItem('quizResults_' + key, JSON.stringify(results));
+          loadLeaderboard();
+          quizSection.classList.add('hidden');
+          form.reset();
+          form.style.display = 'block';
+          window.scrollTo({ top: form.offsetTop - 100, behavior: 'smooth' });
+          alert('Quiz completed! Your score: ' + Math.round(score) + '%');
+        };
+        reader.readAsDataURL(cvFile);
+      }
+      prevBtn.addEventListener('click', () => {
+        if (currentQuestion > 0) {
+          currentQuestion--;
+          showQuestion();
+        }
+      });
+      nextBtn.addEventListener('click', () => {
+        if (currentQuestion < questions.length - 1) {
+          currentQuestion++;
+          showQuestion();
+        } else {
+          finishQuiz();
+        }
+      });
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = nameInput.value.trim();
+        const cvFile = cvInput.files[0];
+        if (!name || !cvFile || !consentInput.checked) {
+          alert('Please enter your name, upload a CV and tick the consent box.');
+          return;
+        }
+        currentPlayer = { name: name, cvName: cvFile.name, cvFile: cvFile };
+        startQuiz(currentPlayer);
+      });
+      loadLeaderboard();
+    }
+
+    // Finance questions array
+    const financeQuestions = [
+      { text: 'Which financial statement summarises a company\'s revenue and expenses over a period?', options: ['Income statement','Balance sheet','Cash flow statement','Statement of retained earnings'], answer: 0 },
+      { text: 'Which accounting concept dictates that assets and liabilities should be recorded at their original purchase price?', options: ['Historical cost','Going concern','Matching','Conservatism'], answer: 0 },
+      { text: 'What ratio is calculated as current assets divided by current liabilities?', options: ['Current ratio','Debt-to-equity ratio','Quick ratio','Gross margin'], answer: 0 },
+      { text: 'In finance, Beta measures what?', options: ['Volatility relative to the market','Earnings per share','Liquidity','Depreciation rate'], answer: 0 },
+      { text: 'Which of the following best describes the time value of money?', options: ['Money today is worth more than money tomorrow','Money tomorrow is worth more than money today','Money has no time value','Money value is constant over time'], answer: 0 },
+      { text: 'What is the primary goal of corporate finance?', options: ['Maximise shareholder wealth','Maximise company size','Minimise taxes','Maximise debt'], answer: 0 },
+      { text: 'What financial ratio measures profitability as net income divided by revenue?', options: ['Net profit margin','Current ratio','Return on equity','Debt ratio'], answer: 0 },
+      { text: 'Which investment valuation method discounts future cash flows to present value?', options: ['Discounted cash flow','Book value','Dividend discount model','Payback period'], answer: 0 },
+      { text: 'According to Modigliani-Miller, in a perfect market the value of a firm is ____ of its capital structure.', options: ['Independent','Dependent','Proportional','Variable'], answer: 0 },
+      { text: 'Which cost remains constant in total regardless of the level of activity?', options: ['Fixed cost','Variable cost','Semi-variable cost','Opportunity cost'], answer: 0 },
+      { text: 'The weighted average cost of capital (WACC) represents what?', options: ['Average return required by all investors','Average cost of goods sold','Average tax rate','Average administrative cost'], answer: 0 },
+      { text: 'What is the formula for calculating Return on Equity (ROE)?', options: ['Net income / shareholders’ equity','Net income / total assets','Total liabilities / total assets','Operating income / revenue'], answer: 0 },
+      { text: 'Which of the following is NOT a component of working capital?', options: ['Inventory','Accounts receivable','Equipment','Cash'], answer: 2 },
+      { text: 'What is the net present value (NPV) rule?', options: ['Accept projects with positive NPV','Accept projects with negative NPV','Reject projects with positive NPV','Accept projects with zero NPV only'], answer: 0 },
+      { text: 'In a capital budgeting decision, sunk costs are:', options: ['Irrelevant','Relevant','Always included','Equal to salvage value'], answer: 0 },
+      { text: 'Which financial market primarily issues new securities?', options: ['Primary market','Secondary market','Derivative market','Foreign exchange market'], answer: 0 },
+      { text: 'Earnings per share (EPS) is calculated as net income minus preferred dividends divided by:', options: ['Average outstanding shares','Total assets','Total debt','Retained earnings'], answer: 0 },
+      { text: 'The DuPont analysis decomposes ROE into profit margin, asset turnover, and ____.', options: ['Financial leverage','Operating income','Gross margin','EPS'], answer: 0 },
+      { text: 'Which principle requires expenses to be matched with revenues in the period they are incurred?', options: ['Matching principle','Cost principle','Revenue recognition principle','Consistency principle'], answer: 0 },
+      { text: 'Financial leverage refers to:', options: ['Use of debt financing to magnify returns','Number of shares outstanding','Use of cash to buy inventory','Paying dividends'], answer: 0 },
+      { text: 'Which method uses constant cost of capital but changing cash flows to value a company?', options: ['Discounted cash flow','Comparable companies analysis','Asset-based valuation','Real options analysis'], answer: 0 },
+      { text: 'In investment, diversification reduces ____ risk.', options: ['Unsystematic','Systematic','Market','Inflation'], answer: 0 },
+      { text: 'What does liquidity refer to?', options: ['Ability to meet short-term obligations','Ability to grow profits','Ability to invest in long-term assets','Ability to pay dividends'], answer: 0 },
+      { text: 'Which statement best describes cash flow from operating activities?', options: ['Cash generated by core business operations','Cash from sale of assets','Cash used to repay debt','Cash from issuing stock'], answer: 0 },
+      { text: 'What is an annuity?', options: ['Series of equal payments at regular intervals','A single payment in the future','Payment that varies each period','A type of bond'], answer: 0 },
+      { text: 'A bond\'s yield to maturity is:', options: ['Rate of return if held to maturity','Coupon rate','Current yield','Face value'], answer: 0 },
+      { text: 'Which financial measure indicates how many times interest is earned?', options: ['Interest coverage ratio','Debt ratio','Return on assets','Gross margin'], answer: 0 },
+      { text: 'The efficient market hypothesis suggests that:', options: ['Stock prices fully reflect all available information','Investors can consistently achieve abnormal returns','Markets are inefficient','Prices are unrelated to information'], answer: 0 },
+      { text: 'Which tax applies to profits earned by corporations?', options: ['Corporate income tax','Capital gains tax','Value-added tax','Excise tax'], answer: 0 },
+      { text: 'The internal rate of return (IRR) is defined as the discount rate that makes NPV:', options: ['Equal zero','Positive','Negative','Equal to payback period'], answer: 0 },
+      { text: 'What is the formula for the price-to-earnings (P/E) ratio?', options: ['Market price per share / Earnings per share','Earnings per share / Market price','Dividend per share / Market price','Market price / Dividends'], answer: 0 },
+      { text: 'Which financial instrument gives the holder the right to buy an asset at a specified price?', options: ['Call option','Put option','Futures contract','Swap'], answer: 0 },
+      { text: 'Capital budgeting decisions are concerned with ____.', options: ['Long-term investments','Short-term financing','Dividend policy','Inventory management'], answer: 0 },
+      { text: 'The capital asset pricing model (CAPM) formula requires the risk-free rate, beta, and ____.', options: ['Market risk premium','Dividend yield','Current ratio','Liquidity ratio'], answer: 0 },
+      { text: 'An increase in working capital will generally ____ cash flow.', options: ['Reduce','Increase','Have no effect','Double'], answer: 0 },
+      { text: 'Market capitalisation is calculated as share price times ____.', options: ['Number of outstanding shares','Earnings per share','Book value','Retained earnings'], answer: 0 },
+      { text: 'Which term refers to the cost of the next best alternative?', options: ['Opportunity cost','Historical cost','Fixed cost','Variable cost'], answer: 0 },
+      { text: 'What type of analysis evaluates the impact of changing assumptions on a project\'s NPV?', options: ['Sensitivity analysis','Break-even analysis','Ratio analysis','Technical analysis'], answer: 0 },
+      { text: 'Dividends are typically paid out of ____.', options: ['Retained earnings','Gross revenue','Short-term debt','Accounts payable'], answer: 0 },
+      { text: 'Which metric measures the net earnings generated by each dollar of shareholders\' equity?', options: ['ROE','ROI','ROA','EPS'], answer: 0 },
+      { text: 'The quick ratio excludes which current asset?', options: ['Inventory','Accounts receivable','Cash','Marketable securities'], answer: 0 },
+      { text: 'Which financial statement reports changes in cash?', options: ['Cash flow statement','Income statement','Balance sheet','Statement of retained earnings'], answer: 0 },
+      { text: 'What does GAAP stand for?', options: ['Generally Accepted Accounting Principles','General Accounting Application Procedure','Global Accounting and Auditing Principles','Government Accounting Analysis Program'], answer: 0 },
+      { text: 'What is amortisation?', options: ['Gradual repayment of a debt over time','Charge to investors for services','Issuance of new shares','Net profit after tax'], answer: 0 },
+      { text: 'Which measurement uses market value of equity plus book value of debt minus cash?', options: ['Enterprise value','Market capitalisation','Net income','EBITDA'], answer: 0 },
+      { text: 'Goodwill is recognised when ____.', options: ['A company acquires another for more than the fair value of net assets','Depreciating a fixed asset','Issuing shares','Recording income taxes'], answer: 0 },
+      { text: 'Which cost of capital component accounts for the corporate tax shield?', options: ['After-tax cost of debt','Cost of equity','Cost of retained earnings','Cost of preferred stock'], answer: 0 },
+      { text: 'Preferred stock differs from common stock because it generally has ____.', options: ['Fixed dividends','Voting rights','Lower priority in liquidation','Higher growth potential'], answer: 0 },
+      { text: 'Which international framework outlines sustainability reporting guidelines?', options: ['Global Reporting Initiative (GRI)','International Monetary Fund (IMF)','Financial Stability Board (FSB)','Basel Committee'], answer: 0 },
+      { text: 'When a company sells receivables to a third party at a discount, this is known as:', options: ['Factoring','Leasing','Hedging','Bonding'], answer: 0 }
+    ];
+
+    // Law questions array
+    const lawQuestions = [
+      { text: 'What is the burden of proof in a criminal trial?', options: ['Beyond reasonable doubt','Preponderance of evidence','Clear and convincing evidence','Probable cause'], answer: 0 },
+      { text: 'Which source of law is created by legislative bodies?', options: ['Statutory law','Common law','Case law','Equity law'], answer: 0 },
+      { text: 'The principle of stare decisis refers to:', options: ['The doctrine of precedent','The right to remain silent','Judicial review','Separation of powers'], answer: 0 },
+      { text: 'What type of contract is formed by words, either spoken or written?', options: ['Express contract','Implied contract','Unilateral contract','Quasi-contract'], answer: 0 },
+      { text: 'Which document commences a civil lawsuit?', options: ['Complaint','Answer','Motion','Verdict'], answer: 0 },
+      { text: 'Negligence requires duty, breach, causation, and ____.', options: ['Damages','Consent','Intent','Consideration'], answer: 0 },
+      { text: 'Mens rea is a Latin term meaning:', options: ['Guilty mind','Guilty act','No contest','Reasonable doubt'], answer: 0 },
+      { text: 'Which court has the final authority on interpretation of UK law?', options: ['The Supreme Court','The Court of Appeal','The High Court','The European Court of Human Rights'], answer: 0 },
+      { text: 'Consideration in contract law refers to:', options: ['Something of value exchanged between parties','The mental capacity of parties','The legal purpose of contract','The fairness of the contract'], answer: 0 },
+      { text: 'The rule against perpetuities deals with:', options: ['Limits on controlling property through future interests','Limitation on contract duration','Prohibiting indefinite sentences','Restricting public spending'], answer: 0 },
+      { text: 'Which remedy compels a party to perform as promised in a contract?', options: ['Specific performance','Compensatory damages','Punitive damages','Rescission'], answer: 0 },
+      { text: 'What is the standard form contract used for the sale of land in England and Wales?', options: ['TR1 transfer form','Article of association','Employment contract','End user license agreement'], answer: 0 },
+      { text: 'A tort that involves intentional confinement without legal justification is called:', options: ['False imprisonment','Assault','Battery','Defamation'], answer: 0 },
+      { text: 'Which intellectual property right protects inventions?', options: ['Patent','Trademark','Copyright','Trade secret'], answer: 0 },
+      { text: 'Limited company directors owe a duty of ____ to the company.', options: ['Fiduciary care','Strict liability','Self-dealing','Unlimited guarantee'], answer: 0 },
+      { text: 'A "void" contract is:', options: ['Not legally enforceable from the beginning','Valid until rescinded','Only enforceable by one party','Enforceable subject to ratification'], answer: 0 },
+      { text: 'Which Act governs unfair dismissal in the UK?', options: ['Employment Rights Act 1996','Companies Act 2006','Equality Act 2010','Health and Safety at Work Act 1974'], answer: 0 },
+      { text: 'Which of the following crimes requires proof of taking property without consent and with intent to permanently deprive?', options: ['Theft','Robbery','Burglary','Fraud'], answer: 0 },
+      { text: 'The Human Rights Act 1998 incorporates which convention into UK law?', options: ['European Convention on Human Rights','Geneva Convention','Convention on the Rights of the Child','UN Charter'], answer: 0 },
+      { text: 'Which principle ensures that no person is punished twice for the same offence?', options: ['Double jeopardy','Habeas corpus','Right to counsel','Right to silence'], answer: 0 },
+      { text: 'What is defamation?', options: ['Publication of false statement harming reputation','Physical harm to another','Unauthorized use of property','Breach of contract'], answer: 0 },
+      { text: 'Which legal concept allows termination of a contract due to unforeseeable events making performance impossible?', options: ['Frustration','Consideration','Estoppel','Breach'], answer: 0 },
+      { text: 'Which body regulates solicitors in England and Wales?', options: ['Solicitors Regulation Authority','Bar Standards Board','Law Society of Scotland','European Commission'], answer: 0 },
+      { text: 'Equity developed historically to mitigate the rigidity of ___.', options: ['Common law','Roman law','Civil law','Canon law'], answer: 0 },
+      { text: 'Which one is a defence to a claim of negligence?', options: ['Contributory negligence','Strict liability','Vicarious liability','Slander'], answer: 0 },
+      { text: 'In company law, the memorandum of association sets out:', options: ['Initial subscribers and share capital','Director remuneration','Dividend policy','Accounting standards'], answer: 0 },
+      { text: 'The test for remoteness of damages in contract, established in Hadley v Baxendale, is based on:', options: ['Reasonable contemplation of parties','Foreseeability of negligence','Strict liability','Profit expectation'], answer: 0 },
+      { text: 'Which type of trust arises without express intention, often to prevent unjust enrichment?', options: ['Constructive trust','Express trust','Bare trust','Testamentary trust'], answer: 0 },
+      { text: 'A "without prejudice" communication is:', options: ['Privileged and not admissible in court','A final decision','Publicly available','A witness statement'], answer: 0 },
+      { text: 'Which law governs the duty of care owed by occupiers to visitors?', options: ['Occupiers’ Liability Act 1957','Criminal Justice Act 2003','Sale of Goods Act 1979','Misrepresentation Act 1967'], answer: 0 },
+      { text: 'Vicarious liability holds an employer liable for acts of ____.', options: ['Employees','Customers','Shareholders','Suppliers'], answer: 0 },
+      { text: 'In criminal law, actus reus means:', options: ['Guilty act','Guilty mind','Reasonable person','Act of god'], answer: 0 },
+      { text: 'Which of the following is an equitable remedy?', options: ['Injunction','Nominal damages','Compensatory damages','Liquidated damages'], answer: 0 },
+      { text: 'The rule in Pinnel’s case states that part payment of a debt is ____ for the whole debt.', options: ['Not valid consideration','Always valid consideration','Valid if made early','Valid if accompanied by a chattel'], answer: 0 },
+      { text: 'Which legislation gives employees the right to request flexible working?', options: ['Employment Rights Act 1996','Childcare Act 2006','Equality Act 2010','Health and Safety at Work Act 1974'], answer: 0 },
+      { text: 'In criminal law, the thin skull rule means you must:', options: ['Take your victim as you find them','Treat injuries with minimal care','Assume victim resilience','Ignore pre-existing conditions'], answer: 0 },
+      { text: 'A partnership is defined as a relationship between persons carrying on a business ____.', options: ['In common with a view to profit','Under separate legal personality','With limited liability','For charitable purposes'], answer: 0 },
+      { text: 'Which Act regulates data protection in the UK post-Brexit?', options: ['Data Protection Act 2018','GDPR','Freedom of Information Act 2000','Computer Misuse Act 1990'], answer: 0 },
+      { text: 'What is the standard of proof in civil cases?', options: ['Balance of probabilities','Beyond reasonable doubt','Clear and convincing evidence','Absolute certainty'], answer: 0 },
+      { text: 'In constitutional law, parliamentary sovereignty means:', options: ['Parliament can make or unmake any law','Courts can overrule parliament','Prime Minister holds ultimate power','EU law supremacy always applies'], answer: 0 },
+      { text: 'Which one is an element of a valid contract?', options: ['Intention to create legal relations','Assault','Promissory estoppel','Strict liability'], answer: 0 },
+      { text: 'Joint tenants in property law have ____ rights.', options: ['Equal undivided','Severalty','Divided equally by shares','No proprietary'], answer: 0 },
+      { text: 'What is a covenant in property law?', options: ['Promise concerning use of land','Co-ownership arrangement','Mortgage security','Lease agreement'], answer: 0 },
+      { text: 'Which law prohibits anti-competitive agreements and abuse of dominant position in the UK?', options: ['Competition Act 1998','Sale of Goods Act 1979','Consumer Rights Act 2015','Fraud Act 2006'], answer: 0 },
+      { text: 'Which remedy allows recovery of land wrongfully retained?', options: ['Ejectment','Rescission','Specific performance','Mareva injunction'], answer: 0 },
+      { text: 'When parties agree to settle a dispute outside court with the help of a neutral third party but the decision is not binding, this is called:', options: ['Mediation','Arbitration','Litigation','Adjudication'], answer: 0 },
+      { text: 'Which law protects consumers against defective products causing injury?', options: ['Consumer Protection Act 1987','Occupiers’ Liability Act 1957','Sale of Goods Act 1979','Torts (Interference with Goods) Act 1977'], answer: 0 },
+      { text: 'Which equitable doctrine prevents a person from going back on a promise even if a formal contract does not exist?', options: ['Promissory estoppel','Undue influence','Duress','Consideration'], answer: 0 },
+      { text: 'Judicial review primarily concerns review of decisions by ____.', options: ['Public bodies','Private companies','Individuals','Foreign governments'], answer: 0 },
+      { text: 'A "voidable" contract is:', options: ['Valid until rescinded by the affected party','Never enforceable','Always enforceable','Not possible in law'], answer: 0 }
+    ];
+
+    // IT questions array
+    const itQuestions = [
+      { text: 'Which programming language is primarily used for Android app development?', options: ['Java','Swift','C#','Ruby'], answer: 0 },
+      { text: 'In Python, what is the keyword used to define a function?', options: ['def','function','func','define'], answer: 0 },
+      { text: 'Which data structure operates on a First-In-First-Out principle?', options: ['Queue','Stack','Tree','Graph'], answer: 0 },
+      { text: 'What does CSS stand for?', options: ['Cascading Style Sheets','Computer Style Syntax','Creative Software Scripts','Cascade Software Solution'], answer: 0 },
+      { text: 'Which HTML element is used to create a numbered list?', options: ['<ol>','<ul>','<dl>','<li>'], answer: 0 },
+      { text: 'In Git, what command creates a new branch?', options: ['git branch <name>','git new <name>','git create <name>','git init <name>'], answer: 0 },
+      { text: 'Which database language is used to retrieve and manipulate data?', options: ['SQL','HTML','CSS','HTTP'], answer: 0 },
+      { text: 'What does API stand for?', options: ['Application Programming Interface','Applied Program Interaction','Advanced Protocol Interface','Application Plug-in Interface'], answer: 0 },
+      { text: 'What is the role of an operating system?', options: ['Manages hardware and software resources','Connects computers to the internet','Runs antivirus programs','Designs application interfaces'], answer: 0 },
+      { text: 'Which of these is a NoSQL database?', options: ['MongoDB','MySQL','PostgreSQL','SQLite'], answer: 0 },
+      { text: 'What is the purpose of the div tag in HTML?', options: ['Defines a division or section','Creates a hyperlink','Adds an image','Displays italic text'], answer: 0 },
+      { text: 'In JavaScript, what does NaN stand for?', options: ['Not-a-Number','New assigned number','Node and Network','Not a Node'], answer: 0 },
+      { text: 'What is the port number for HTTP?', options: ['80','443','22','8080'], answer: 0 },
+      { text: 'Which protocol secures communication over the internet?', options: ['HTTPS','FTP','SMTP','HTTP'], answer: 0 },
+      { text: 'What does responsive design mean?', options: ['Design adjusts to different screen sizes','Design uses large fonts','Design loads quickly','Design is only for desktops'], answer: 0 },
+      { text: 'Which method is used to add an element at the end of an array in JavaScript?', options: ['.push()','.pop()','.shift()','.splice()'], answer: 0 },
+      { text: 'What is a framework?', options: ['A reusable set of libraries to build software','A hardware device','A programming language','A debugging tool'], answer: 0 },
+      { text: 'Which command is used to install packages using Node.js package manager?', options: ['npm install','npm create','npm update','npm make'], answer: 0 },
+      { text: 'Which Python library is popular for machine learning?', options: ['TensorFlow','Bootstrap','jQuery','Spring'], answer: 0 },
+      { text: 'What does refactoring mean?', options: ['Improving code without changing its behaviour','Deleting code','Changing variable names randomly','Copying code from others'], answer: 0 },
+      { text: 'Which HTML element is used for the largest heading?', options: ['<h1>','<h6>','<header>','<title>'], answer: 0 },
+      { text: 'What does UX stand for?', options: ['User Experience','Ultra Xylophone','Unique Execution','User Extension'], answer: 0 },
+      { text: 'Which command stages all changes in Git?', options: ['git add .','git stage','git commit','git push'], answer: 0 },
+      { text: 'What does JSON stand for?', options: ['JavaScript Object Notation','Java Standard Output','Jumping Node Operation','Java Serialisation'], answer: 0 },
+      { text: 'Which HTTP method is idempotent for creating resources?', options: ['PUT','POST','GET','PATCH'], answer: 0 },
+      { text: 'Which CSS property changes text colour?', options: ['color','font-size','background','text-align'], answer: 0 },
+      { text: 'What is the purpose of DNS?', options: ['Translates domain names to IP addresses','Encrypts data','Provides storage','Monitors performance'], answer: 0 },
+      { text: 'In object-oriented programming, what is inheritance?', options: ['Mechanism where a class derives properties from another','Writing code twice','Running multiple programs','Accessing private variables'], answer: 0 },
+      { text: 'Which of these is a JavaScript framework?', options: ['React','Laravel','Django','Spring'], answer: 0 },
+      { text: 'What is a pull request?', options: ['A request to merge code into a branch','A request to delete code','A way to clone a repository','A tool to compress files'], answer: 0 },
+      { text: 'Which file type stores cascading style rules?', options: ['.css','.js','.html','.sql'], answer: 0 },
+      { text: 'What is the primary purpose of caching?', options: ['Store data temporarily for quick access','Increase data size','Delete old data','Encrypt data'], answer: 0 },
+      { text: 'Which device connects multiple networks and directs data between them?', options: ['Router','Switch','Hub','Modem'], answer: 0 },
+      { text: 'What does ACID stand for in database transactions?', options: ['Atomicity, Consistency, Isolation, Durability','Accuracy, Consistency, Integrity, Data','Automation, Calculation, Integrity, Documentation','None of the above'], answer: 0 },
+      { text: 'Which of the following is a version control system?', options: ['Git','AWS','Azure','Jenkins'], answer: 0 },
+      { text: 'Which algorithm is used to find the shortest path in a weighted graph?', options: ['Dijkstra’s algorithm','Quick sort','Binary search','Bubble sort'], answer: 0 },
+      { text: 'Which symbol is used for comments in CSS?', options: ['/* comment */','// comment','# comment','<!-- comment -->'], answer: 0 },
+      { text: 'What does CPU stand for?', options: ['Central Processing Unit','Computer Program Utility','Control Panel Unit','Central Print Unit'], answer: 0 },
+      { text: 'Which JavaScript keyword declares a block-scoped variable?', options: ['let','var','static','global'], answer: 0 },
+      { text: 'What is the use of the foreign key in a relational database?', options: ['Links a record in one table to a record in another','Stores binary data','Increases storage','Creates an index'], answer: 0 },
+      { text: 'Which technique ensures that a single instance of a class exists?', options: ['Singleton pattern','Factory pattern','Observer pattern','Strategy pattern'], answer: 0 },
+      { text: 'What does API throttling do?', options: ['Limits number of requests a client can make','Speeds up network traffic','Deletes unused API endpoints','Changes API version'], answer: 0 },
+      { text: 'Which HTTP status code means “Not Found”?', options: ['404','200','500','302'], answer: 0 },
+      { text: 'Which of these languages is statically typed?', options: ['Java','Python','Ruby','JavaScript'], answer: 0 },
+      { text: 'The command to commit changes in Git is:', options: ['git commit','git push','git add','git pull'], answer: 0 },
+      { text: 'Which OS is open-source?', options: ['Linux','Windows','macOS','iOS'], answer: 0 },
+      { text: 'Which sorting algorithm has the best average-case performance?', options: ['Merge sort','Bubble sort','Selection sort','Insertion sort'], answer: 0 },
+      { text: 'What does MVC stand for in software design?', options: ['Model-View-Controller','Multi-View-Console','Memory-Variable-Class','Model-Variable-Coding'], answer: 0 },
+      { text: 'Which port does SSH use by default?', options: ['22','21','23','80'], answer: 0 },
+      { text: 'Which technique ensures code can run concurrently without interfering?', options: ['Multithreading','Recursion','Polymorphism','Encapsulation'], answer: 0 }
+    ];
+
+    // Healthcare questions array
+    const healthcareQuestions = [
+      { text: 'What does the abbreviation "BP" stand for in medical terms?', options: ['Blood pressure','Body percentage','Breathing pattern','Brain pulse'], answer: 0 },
+      { text: 'Which organ is responsible for filtering blood to produce urine?', options: ['Kidneys','Liver','Heart','Lungs'], answer: 0 },
+      { text: 'The Hippocratic Oath is historically taken by which professionals?', options: ['Doctors','Lawyers','Teachers','Engineers'], answer: 0 },
+      { text: 'Which vitamin is essential for blood clotting?', options: ['Vitamin K','Vitamin A','Vitamin C','Vitamin D'], answer: 0 },
+      { text: 'Which branch of medicine deals with the study of tumors?', options: ['Oncology','Cardiology','Neurology','Dermatology'], answer: 0 },
+      { text: 'What is the normal adult resting heart rate range (beats per minute)?', options: ['60-100','30-50','120-160','80-120'], answer: 0 },
+      { text: 'Which disease is known as the "silent killer" because it often has no symptoms?', options: ['Hypertension','Influenza','Diabetes','Tuberculosis'], answer: 0 },
+      { text: 'MRI uses which type of energy to produce images?', options: ['Magnetic fields and radio waves','X-rays','Ultrasound','Gamma rays'], answer: 0 },
+      { text: 'Which blood group is known as the universal donor?', options: ['O negative','AB positive','A positive','B negative'], answer: 0 },
+      { text: 'What does ICU stand for?', options: ['Intensive care unit','Immediate care unit','Intermediate care unit','Infant care unit'], answer: 0 },
+      { text: 'Which professional is primarily responsible for dispensing medications?', options: ['Pharmacist','Dietitian','Radiographer','Physiotherapist'], answer: 0 },
+      { text: 'What is the term for inflammation of the liver?', options: ['Hepatitis','Nephritis','Dermatitis','Arthritis'], answer: 0 },
+      { text: 'Which test measures the electrical activity of the heart?', options: ['Electrocardiogram','Electroencephalogram','Electromyogram','Electrooculogram'], answer: 0 },
+      { text: 'Which organ produces insulin?', options: ['Pancreas','Thyroid','Adrenal gland','Spleen'], answer: 0 },
+      { text: 'Which of the following is NOT a mode of transmission for HIV?', options: ['Casual contact like hugging','Unprotected sex','Sharing needles','Mother-to-child during childbirth'], answer: 0 },
+      { text: 'What does BMI stand for?', options: ['Body mass index','Blood muscle indicator','Bone mass index','Basal metabolism information'], answer: 0 },
+      { text: 'Which of these is a bacterial infection?', options: ['Tuberculosis','Influenza','Measles','Chickenpox'], answer: 0 },
+      { text: 'What does the acronym CPR stand for?', options: ['Cardiopulmonary resuscitation','Cardiac pulse rate','Critical patient response','Controlled pressure reaction'], answer: 0 },
+      { text: 'Which nutrient is most important for muscle repair?', options: ['Protein','Carbohydrates','Fats','Vitamins'], answer: 0 },
+      { text: 'Which hormone regulates blood sugar levels?', options: ['Insulin','Adrenaline','Melatonin','Thyroxine'], answer: 0 },
+      { text: 'What is the primary function of red blood cells?', options: ['Transport oxygen','Fight infection','Clot blood','Produce hormones'], answer: 0 },
+      { text: 'Which disease is caused by deficiency of insulin?', options: ['Diabetes mellitus','Hypertension','Anemia','Rickets'], answer: 0 },
+      { text: 'What does DNA stand for?', options: ['Deoxyribonucleic acid','Deoxyribose natural acid','Dynamic nuclear acid','Deoxynuclear amino acid'], answer: 0 },
+      { text: 'Which organ is affected by hepatitis?', options: ['Liver','Heart','Kidneys','Lungs'], answer: 0 },
+      { text: 'In healthcare, triage refers to:', options: ['Prioritizing patients based on severity of their condition','Disinfecting surgical instruments','Determining a diagnosis','Administering medication'], answer: 0 },
+      { text: 'Which vitamin is produced when the human skin is exposed to sunlight?', options: ['Vitamin D','Vitamin B12','Vitamin K','Vitamin E'], answer: 0 },
+      { text: 'The term "analgesic" refers to a drug that:', options: ['Relieves pain','Reduces fever','Prevents infection','Induces sleep'], answer: 0 },
+      { text: 'Which condition is characterized by the loss of bone density?', options: ['Osteoporosis','Arthritis','Scoliosis','Gout'], answer: 0 },
+      { text: 'Which part of the brain controls balance and coordination?', options: ['Cerebellum','Medulla oblongata','Cerebrum','Hypothalamus'], answer: 0 },
+      { text: 'The medical specialty concerned with pregnancy and childbirth is:', options: ['Obstetrics','Gynaecology','Paediatrics','Urology'], answer: 0 },
+      { text: 'Which gas is transported from the lungs to tissues via blood?', options: ['Oxygen','Carbon dioxide','Nitrogen','Hydrogen'], answer: 0 },
+      { text: 'Which is a common symptom of anemia?', options: ['Fatigue','Euphoria','Hyperactivity','Excessive sweating'], answer: 0 },
+      { text: 'What is the main function of white blood cells?', options: ['Fight infection','Carry nutrients','Store fat','Produce energy'], answer: 0 },
+      { text: 'Which device measures blood pressure?', options: ['Sphygmomanometer','Thermometer','Glucometer','Stethoscope'], answer: 0 },
+      { text: 'Which medical imaging technique uses sound waves?', options: ['Ultrasound','CT scan','X-ray','Fluoroscopy'], answer: 0 },
+      { text: 'What does a cardiologist specialize in?', options: ['Heart health','Brain function','Kidney function','Lung diseases'], answer: 0 },
+      { text: 'Which of these is considered a micronutrient?', options: ['Iron','Carbohydrates','Proteins','Lipids'], answer: 0 },
+      { text: 'Which bone is found in the arm?', options: ['Humerus','Femur','Tibia','Fibula'], answer: 0 },
+      { text: 'Which organ is responsible for producing bile?', options: ['Liver','Kidneys','Gallbladder','Pancreas'], answer: 0 },
+      { text: 'Vaccines work by stimulating the production of what?', options: ['Antibodies','Red blood cells','Platelets','Insulin'], answer: 0 },
+      { text: 'Which disease involves the airways becoming inflamed and narrow?', options: ['Asthma','Bronchitis','Pneumonia','Emphysema'], answer: 0 },
+      { text: 'Which part of the eye controls how much light enters the pupil?', options: ['Iris','Cornea','Lens','Retina'], answer: 0 },
+      { text: 'Dehydration primarily means the body lacks:', options: ['Water','Protein','Minerals','Fat'], answer: 0 },
+      { text: 'The best way to reduce transmission of infectious diseases is:', options: ['Hand washing','Taking vitamin supplements','Skipping meals','Listening to loud music'], answer: 0 },
+      { text: 'Which mineral is important for oxygen transport in blood?', options: ['Iron','Calcium','Magnesium','Sodium'], answer: 0 },
+      { text: 'Which one of these is a viral disease?', options: ['Measles','Tuberculosis','Cholera','Syphilis'], answer: 0 },
+      { text: 'Normal body temperature in degrees Celsius is approximately:', options: ['37','35','39','42'], answer: 0 },
+      { text: 'Which medical professional specializes in the diagnosis and treatment of cancer?', options: ['Oncologist','Cardiologist','Neurologist','Dermatologist'], answer: 0 },
+      { text: 'Which law relates to patient privacy and data protection?', options: ['Health Insurance Portability and Accountability Act (HIPAA)','Freedom of Information Act','Consumer Protection Act','Employment Rights Act'], answer: 0 },
+      { text: 'Which of the following helps prevent cardiovascular disease?', options: ['Regular exercise','Smoking','High sugar diet','Excessive alcohol'], answer: 0 }
+    ];
+
+    // Art & Design questions array
+    const artQuestions = [
+      { text: 'Which color model is used for print?', options: ['CMYK','RGB','HSB','HEX'], answer: 0 },
+      { text: 'In design, the term "kerning" refers to:', options: ['Adjusting space between letters','Choosing a color palette','Selecting a font size','Balancing elements on a page'], answer: 0 },
+      { text: 'The art movement characterized by small, thin brush strokes and emphasis on light is:', options: ['Impressionism','Cubism','Baroque','Surrealism'], answer: 0 },
+      { text: 'Which file format is commonly used for vector graphics?', options: ['SVG','JPEG','PNG','BMP'], answer: 0 },
+      { text: 'The primary colours of light are:', options: ['Red, green, blue','Cyan, magenta, yellow','Red, yellow, blue','Black, white, red'], answer: 0 },
+      { text: 'Negative space in art refers to:', options: ['The area around and between the subjects of an image','Dark colours used in a design','The main subject of a painting','Shadows created by objects'], answer: 0 },
+      { text: 'Which technique in perspective drawing uses lines converging at a single point?', options: ['One-point perspective','Two-point perspective','Isometric perspective','Orthographic projection'], answer: 0 },
+      { text: 'Which famous artist painted the Mona Lisa?', options: ['Leonardo da Vinci','Vincent van Gogh','Pablo Picasso','Michelangelo'], answer: 0 },
+      { text: 'Typography is the art of:', options: ['Arranging type','Creating sculptures','Mixing paint','Carving wood'], answer: 0 },
+      { text: 'Which design principle suggests that elements placed close together are perceived as a group?', options: ['Proximity','Balance','Contrast','Hierarchy'], answer: 0 },
+      { text: 'The process of cutting into a surface to make a print is called:', options: ['Etching','Embossing','Lithography','Screen printing'], answer: 0 },
+      { text: 'Which of these is a sans-serif font?', options: ['Arial','Times New Roman','Garamond','Georgia'], answer: 0 },
+      { text: 'A complementary colour scheme uses colours that are:', options: ['Opposite each other on the colour wheel','Adjacent on the colour wheel','All neutral colours','All warm colours'], answer: 0 },
+      { text: 'Who is known for the "Starry Night" painting?', options: ['Vincent van Gogh','Claude Monet','Edgar Degas','Paul Cézanne'], answer: 0 },
+      { text: 'The Golden Ratio is approximately equal to:', options: ['1.618','2.718','3.142','0.707'], answer: 0 },
+      { text: 'In animation, how many frames per second are typically used for smooth motion?', options: ['24','8','12','60'], answer: 0 },
+      { text: 'Which tool in Adobe Photoshop is used to select areas of similar colour?', options: ['Magic Wand','Clone Stamp','Gradient Tool','Pen Tool'], answer: 0 },
+      { text: 'The art movement that uses geometric shapes and interlocking planes is:', options: ['Cubism','Impressionism','Renaissance','Art Nouveau'], answer: 0 },
+      { text: 'Which file format supports transparency and is commonly used on the web?', options: ['PNG','JPG','GIF','TIFF'], answer: 0 },
+      { text: 'A sculpture carved from a single block of stone is known as:', options: ['Subtractive sculpture','Additive sculpture','Assemblage','Casting'], answer: 0 },
+      { text: 'The term "hue" refers to:', options: ['A pure colour','Brightness of a colour','Darkness of a colour','Saturation of a colour'], answer: 0 },
+      { text: 'Which period is known for artists like Michelangelo and Raphael?', options: ['Renaissance','Middle Ages','Modernism','Baroque'], answer: 0 },
+      { text: 'A motif repeated in a predictable manner creates a:', options: ['Pattern','Texture','Contrast','Focal point'], answer: 0 },
+      { text: 'The blending of one colour into another is known as a:', options: ['Gradient','Texture','Pattern','Silhouette'], answer: 0 },
+      { text: 'In photography, the aperture controls:', options: ['Amount of light entering the camera','The ISO setting','Shutter speed','Colour balance'], answer: 0 },
+      { text: 'Which of these is an example of a serif font?', options: ['Times New Roman','Helvetica','Futura','Gill Sans'], answer: 0 },
+      { text: 'The Dada art movement was a reaction to:', options: ['World War I','Industrial Revolution','World War II','Great Depression'], answer: 0 },
+      { text: 'RGB stands for:', options: ['Red, Green, Blue','Red, Grey, Black','Rich Green Blue','Royal, Gold, Beige'], answer: 0 },
+      { text: 'Which design principle refers to the visual weight of elements being balanced around a central point?', options: ['Radial balance','Symmetry','Asymmetry','Focal balance'], answer: 0 },
+      { text: 'The technique of printing from a flat surface treated so as to repel ink except where it is required for printing is:', options: ['Lithography','Engraving','Woodcut','Intaglio'], answer: 0 },
+      { text: 'Which art movement focused on dream-like scenes and the unconscious mind?', options: ['Surrealism','Fauvism','Impressionism','Realism'], answer: 0 },
+      { text: 'The colour produced by mixing equal parts of blue and yellow is:', options: ['Green','Orange','Purple','Brown'], answer: 0 },
+      { text: 'In digital design, DPI stands for:', options: ['Dots per inch','Depth per image','Digital pixel input','Data points included'], answer: 0 },
+      { text: 'The standard page size for A4 paper is:', options: ['210 × 297 mm','148 × 210 mm','297 × 420 mm','100 × 150 mm'], answer: 0 },
+      { text: 'Which principle implies that differences between elements create visual interest?', options: ['Contrast','Alignment','Repetition','Unity'], answer: 0 },
+      { text: 'Which artist is associated with the pop art movement?', options: ['Andy Warhol','Salvador Dalí','Claude Monet','Jackson Pollock'], answer: 0 },
+      { text: 'The process of creating art by applying coloured pigments to a surface is:', options: ['Painting','Sculpting','Weaving','Photography'], answer: 0 },
+      { text: 'In typography, the vertical space between lines of text is called:', options: ['Leading','Tracking','Kerning','Baseline'], answer: 0 },
+      { text: 'What is a storyboard used for?', options: ['Planning a sequence of scenes','Mixing audio','Colour correcting photographs','Sculpting figures'], answer: 0 },
+      { text: 'A quick rough drawing used to capture the basic form of a subject is called:', options: ['Gesture drawing','Blueprint','Caricature','Calligraphy'], answer: 0 },
+      { text: 'The Bauhaus school was founded in which country?', options: ['Germany','France','Italy','United States'], answer: 0 },
+      { text: 'Which of these file formats is best for high-quality photographic images?', options: ['TIFF','BMP','GIF','SVG'], answer: 0 },
+      { text: 'The principle of hierarchy in design is about:', options: ['Arranging elements to show importance','Using bright colours','Repeating shapes','Aligning objects to the left'], answer: 0 },
+      { text: 'In painting, chiaroscuro refers to:', options: ['Strong contrasts between light and dark','Use of bright colours','Abstract shapes','Flat design'], answer: 0 },
+      { text: 'Which colour scheme uses three colours evenly spaced around the colour wheel?', options: ['Triadic','Monochromatic','Analogous','Split-complementary'], answer: 0 },
+      { text: 'In design, "white space" refers to:', options: ['Empty space around elements','White-coloured areas','Overexposed images','Background texture'], answer: 0 },
+      { text: 'The technique of drawing with dots to create shading is called:', options: ['Stippling','Hatching','Cross-hatching','Blending'], answer: 0 },
+      { text: 'Which movement is known for abstract expressionism?', options: ['Abstract Expressionism','Baroque','Neoclassicism','Romanticism'], answer: 0 },
+      { text: 'The term "UX design" stands for:', options: ['User Experience design','Ultimate Experience design','Unified XML design','User Experimentation design'], answer: 0 },
+      { text: 'CMYK stands for:', options: ['Cyan, Magenta, Yellow, Key (Black)','Cyan, Magenta, Yellow, Kelly Green','Crimson, Magenta, Yellow, Black','Chartreuse, Maroon, Yellow, Key'], answer: 0 }
+    ];
+
+    // Communication questions array
+    const commQuestions = [
+      { text: 'Which of the following is an example of active listening?', options: ['Nodding and summarizing what the speaker said','Interrupting to add your opinion','Checking your phone while listening','Thinking about your response while others speak'], answer: 0 },
+      { text: 'In communication, the acronym "KISS" stands for:', options: ['Keep it simple, stupid','Keep it short and sweet','Knowledge is speaking sincerely','Keep ideas strong and sharp'], answer: 0 },
+      { text: 'Which method of communication is most appropriate for conveying complex, detailed information?', options: ['Written report','Instant message','Gestures','Emoji'], answer: 0 },
+      { text: 'Nonverbal communication accounts for approximately what percentage of message interpretation according to some studies?', options: ['65%-93%','10%-20%','30%-40%','100%'], answer: 0 },
+      { text: 'Which communication model emphasizes feedback and noise?', options: ['Shannon-Weaver model','Lasswell’s model','Linear model','Transactional model'], answer: 0 },
+      { text: 'What does "feedback" refer to in communication?', options: ['The response from the receiver','Loud noise during a presentation','The main message','Physical gestures'], answer: 0 },
+      { text: 'Which question type encourages a detailed response?', options: ['Open-ended','Closed','Rhetorical','Loaded'], answer: 0 },
+      { text: 'In a professional email, what should be included in the subject line?', options: ['A concise summary of the email’s content','Your full name','A generic greeting','An emoticon'], answer: 0 },
+      { text: 'Which of the following is an example of upward communication in a company?', options: ['An employee submitting a report to a manager','A manager giving instructions to employees','Colleagues talking to one another','A CEO presenting to shareholders'], answer: 0 },
+      { text: 'The "you" attitude in business writing focuses on:', options: ['The reader’s perspective','The writer’s needs','Third-person narrative','Technical jargon'], answer: 0 },
+      { text: 'Which listening barrier results from focusing on your own response while others speak?', options: ['Rehearsing','Filtering','Judging','Pseudo-listening'], answer: 0 },
+      { text: 'In public speaking, what is a technique for managing anxiety?', options: ['Practising and deep breathing','Rushing through the material','Ignoring the audience','Avoiding eye contact'], answer: 0 },
+      { text: 'Which of these is an example of asynchronous communication?', options: ['Email','Phone call','Meeting','Video conference'], answer: 0 },
+      { text: 'The process of restating someone else’s idea in your own words is called:', options: ['Paraphrasing','Quoting','Mimicking','Interrupting'], answer: 0 },
+      { text: 'What is the purpose of an elevator pitch?', options: ['Quickly convey an idea or proposition','Ride an elevator','Take a break from work','Explain your job history'], answer: 0 },
+      { text: 'In intercultural communication, high-context cultures rely heavily on:', options: ['Implicit messages and nonverbal cues','Explicit verbal communication','Written contracts','Formal rules only'], answer: 0 },
+      { text: 'Which of the following constitutes effective written communication?', options: ['Clarity, conciseness, and correctness','Use of jargon','Lengthy sentences','Passive voice throughout'], answer: 0 },
+      { text: 'During a negotiation, active listening can:', options: ['Build rapport and identify interests','Show disinterest','Increase conflict','Change the topic'], answer: 0 },
+      { text: 'In team meetings, what practice ensures everyone is heard?', options: ['Encouraging participation from all members','Letting only the leader speak','Skipping question time','Focusing solely on agenda'], answer: 0 },
+      { text: 'Which of these statements demonstrates assertive communication?', options: ['“I understand your point, but I feel we should…”','“You’re wrong and I’m right.”','“It doesn’t matter to me.”','Silence'], answer: 0 },
+      { text: 'What is a communication channel?', options: ['Medium through which a message travels','The outcome of a message','The context of communication','The topic being discussed'], answer: 0 },
+      { text: 'The "7 C’s" of communication include completeness, conciseness, and:', options: ['Consideration','Compression','Competition','Complication'], answer: 0 },
+      { text: 'Which of the following can cause miscommunication?', options: ['Assumptions and biases','Clear feedback','Active listening','Empathy'], answer: 0 },
+      { text: 'Paralinguistics refers to:', options: ['Vocal features like tone and pitch','Written punctuation','Body posture','Facial expressions only'], answer: 0 },
+      { text: 'Which conflict resolution style seeks a win-win solution?', options: ['Collaborating','Competing','Avoiding','Accommodating'], answer: 0 },
+      { text: 'In business meetings, minutes should include:', options: ['Key decisions and action items','Personal opinions','Unrelated anecdotes','Marketing slogans'], answer: 0 },
+      { text: 'A communication plan should outline:', options: ['Audience, message, channel, and schedule','Personal interests','Unnecessary details','Only the message content'], answer: 0 },
+      { text: 'In delivering constructive feedback, using “I” statements can help:', options: ['Avoid blaming others','Assert dominance','Prevent change','Interrupt'], answer: 0 },
+      { text: 'Which of the following reduces the risk of misunderstanding in written communication?', options: ['Proofreading and editing','Using slang','Writing in all caps','Skipping salutations'], answer: 0 },
+      { text: 'What does “audience analysis” involve?', options: ['Understanding the audience’s needs and expectations','Judging the audience','Ignoring differences','Controlling the audience’s reactions'], answer: 0 },
+      { text: 'Eye contact in Western cultures generally conveys:', options: ['Confidence and engagement','Disrespect','Deception','Anger'], answer: 0 },
+      { text: 'Which is an example of downward communication?', options: ['Manager to subordinate instructions','Subordinate to manager suggestions','Colleague to colleague chatting','Employee feedback to HR'], answer: 0 },
+      { text: 'One disadvantage of written communication is:', options: ['Lack of immediate feedback','Permanent record','Clarity','Ability to convey complex ideas'], answer: 0 },
+      { text: '“Noise” in the communication process refers to:', options: ['Anything that interferes with message transmission','Music played during a meeting','The speaker’s accent','Background decoration'], answer: 0 },
+      { text: 'Emotional intelligence in communication primarily involves:', options: ['Recognising and managing emotions','Being persuasive regardless of feelings','Suppressing all emotions','Ignoring other perspectives'], answer: 0 },
+      { text: 'When giving a presentation, storytelling is useful because:', options: ['It captures attention and illustrates points','It wastes time','It hides facts','It confuses listeners'], answer: 0 },
+      { text: 'In workplace communication, which medium is best for urgent matters?', options: ['Phone call','Monthly report','Memo','Annual newsletter'], answer: 0 },
+      { text: 'Which statement best defines “grapevine communication”?', options: ['Informal communication network within an organisation','Internal company newsletter','Formal meeting notes','Project documentation'], answer: 0 },
+      { text: 'Which element is NOT part of the basic communication model?', options: ['Time constraints','Sender','Receiver','Channel'], answer: 0 },
+      { text: 'Personal space preferences in communication are influenced by:', options: ['Culture and context','Weather','Height','Age only'], answer: 0 },
+      { text: 'One way to adapt communication to a virtual environment is to:', options: ['Use clear visual aids and check understanding','Turn off your camera','Talk over others','Ignore time zones'], answer: 0 },
+      { text: 'Which method helps ensure messages are understood across cultures?', options: ['Using simple and clear language','Using idioms','Speaking faster','Avoiding visuals'], answer: 0 },
+      { text: 'Nonverbal cues can:', options: ['Contradict verbal messages','Always support verbal messages','Are irrelevant','Make speech longer'], answer: 0 },
+      { text: 'What is the purpose of using questions during a conversation?', options: ['Engage and clarify understanding','Interrupt constantly','Fill awkward silences','Distract from topic'], answer: 0 },
+      { text: 'A communication barrier due to technical jargon is called:', options: ['Semantic barrier','Physiological barrier','Physical barrier','Psychological barrier'], answer: 0 },
+      { text: 'Repeating back what the speaker has said to confirm understanding is known as:', options: ['Reflective listening','Assertive communication','Passive-aggressive behaviour','Interrupting'], answer: 0 },
+      { text: 'Which of the following is an external communication?', options: ['Press release','Team meeting','Performance review','Employee feedback'], answer: 0 },
+      { text: 'In conflict management, which style involves giving up your own needs to satisfy the other party?', options: ['Accommodating','Collaborating','Competing','Compromising'], answer: 0 },
+      { text: 'When writing a report, the executive summary should:', options: ['Provide a concise overview of the main points','Contain every detail','Be omitted','Use complex language'], answer: 0 },
+      { text: 'The primary goal of persuasive communication is to:', options: ['Influence attitudes or behaviour','Entertain','Provide background noise','Confuse the audience'], answer: 0 }
+    ];
+
+    // Initialise each sector quiz
+    document.addEventListener('DOMContentLoaded', () => {
+      initSectorQuiz({
+        key: 'finance',
+        formId: 'financeForm',
+        quizId: 'financeQuiz',
+        leaderboardBodyId: 'leaderboardBodyFinance',
+        nameId: 'financeName',
+        cvId: 'financeCV',
+        consentId: 'financeConsent',
+        timerId: 'financeTimer',
+        questionId: 'financeQuestion',
+        optionsId: 'financeOptions',
+        prevBtnId: 'financePrevBtn',
+        nextBtnId: 'financeNextBtn',
+        questions: financeQuestions
+      });
+      initSectorQuiz({
+        key: 'law',
+        formId: 'lawForm',
+        quizId: 'lawQuiz',
+        leaderboardBodyId: 'leaderboardBodyLaw',
+        nameId: 'lawName',
+        cvId: 'lawCV',
+        consentId: 'lawConsent',
+        timerId: 'lawTimer',
+        questionId: 'lawQuestion',
+        optionsId: 'lawOptions',
+        prevBtnId: 'lawPrevBtn',
+        nextBtnId: 'lawNextBtn',
+        questions: lawQuestions
+      });
+      initSectorQuiz({
+        key: 'it',
+        formId: 'itForm',
+        quizId: 'itQuiz',
+        leaderboardBodyId: 'leaderboardBodyIT',
+        nameId: 'itName',
+        cvId: 'itCV',
+        consentId: 'itConsent',
+        timerId: 'itTimer',
+        questionId: 'itQuestion',
+        optionsId: 'itOptions',
+        prevBtnId: 'itPrevBtn',
+        nextBtnId: 'itNextBtn',
+        questions: itQuestions
+      });
+      initSectorQuiz({
+        key: 'healthcare',
+        formId: 'healthcareForm',
+        quizId: 'healthcareQuiz',
+        leaderboardBodyId: 'leaderboardBodyHealthcare',
+        nameId: 'healthcareName',
+        cvId: 'healthcareCV',
+        consentId: 'healthcareConsent',
+        timerId: 'healthcareTimer',
+        questionId: 'healthcareQuestion',
+        optionsId: 'healthcareOptions',
+        prevBtnId: 'healthcarePrevBtn',
+        nextBtnId: 'healthcareNextBtn',
+        questions: healthcareQuestions
+      });
+      initSectorQuiz({
+        key: 'art',
+        formId: 'artForm',
+        quizId: 'artQuiz',
+        leaderboardBodyId: 'leaderboardBodyArt',
+        nameId: 'artName',
+        cvId: 'artCV',
+        consentId: 'artConsent',
+        timerId: 'artTimer',
+        questionId: 'artQuestion',
+        optionsId: 'artOptions',
+        prevBtnId: 'artPrevBtn',
+        nextBtnId: 'artNextBtn',
+        questions: artQuestions
+      });
+      initSectorQuiz({
+        key: 'comm',
+        formId: 'commForm',
+        quizId: 'commQuiz',
+        leaderboardBodyId: 'leaderboardBodyComm',
+        nameId: 'commName',
+        cvId: 'commCV',
+        consentId: 'commConsent',
+        timerId: 'commTimer',
+        questionId: 'commQuestion',
+        optionsId: 'commOptions',
+        prevBtnId: 'commPrevBtn',
+        nextBtnId: 'commNextBtn',
+        questions: commQuestions
+      });
+    });
+  </script>
+</body>
+</html>

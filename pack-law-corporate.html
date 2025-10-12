@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Corporate Law &amp; Compliance Pack | Experience4Grads</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Base styling */
+      body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: linear-gradient(135deg, #0a4e92, #e64a19); }
+      /* Header styled with gradient matching the main site */
+      header { display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: linear-gradient(135deg, #0a4e92, #e64a19); color: #ffffff; }
+      header img { height: 40px; }
+      header nav a { margin: 0 0.5rem; color: #ffffff; text-decoration: none; font-weight: 600; }
+      /* Container with gradient border matching the Skills page */
+      .pack-container { max-width: 1000px; margin: 2rem auto; padding: 2rem; border: 6px solid transparent; border-image: linear-gradient(45deg, #0a4e92, #e64a19) 1; border-radius: 12px; background-color: #ffffff; }
+      /* Section styling for goal, guided tasks and submission */
+      .goal, .guided, .submit { margin-bottom: 2rem; }
+      .goal h2, .guided h2, .submit h2 { color: #0a4e92; margin-top: 1.5rem; font-size: 1.5rem; }
+      .goal h3 { color: #e64a19; margin-top: 1rem; font-size: 1.2rem; }
+      .suggested-tools { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .suggested-tools li { background: #f0f8ff; border: 1px solid #e0e5ec; border-radius: 6px; padding: 0.25rem 0.5rem; font-size: 0.85rem; }
+      .guided ol { padding-left: 1.5rem; }
+      .submit ul { padding-left: 1.5rem; list-style: disc; }
+      .tip, .help { margin-top: 0.5rem; font-style: italic; color: #555; }
+      h1 { margin-top: 0; color: #0a4e92; font-size: 2rem; }
+      footer { margin-top: 3rem; padding: 1rem; text-align: center; background: #f7f7f7; }
+    </style>
+    <script>
+      // Redirect users who are not logged in or have not paid for a subscription
+      window.addEventListener('DOMContentLoaded', function () {
+        const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+        const subscribed = user && localStorage.getItem('subscriptionPaid_' + user) === 'true';
+        if (!user || !subscribed) {
+          window.location.href = 'skills.html#subscribe';
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <a href="index.html"><img src="logo.jpeg" alt="Experience4Grads logo" /></a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="jobs.html">Micro‑Internships</a>
+        <a href="skills.html">Skills &amp; CV</a>
+      </nav>
+    </header>
+    <main>
+      <div class="pack-container">
+        <h1>Corporate Law &amp; Compliance</h1>
+        <p>This pack introduces the foundations of corporate governance, company structures and regulatory compliance. It equips you with the knowledge to support businesses in meeting their legal obligations.</p>
+        <section class="goal">
+          <h2>Goal (≈10 hours)</h2>
+          <p>Over approximately ten hours, you will study different business entities, explore governance frameworks and draft corporate documents. By completing these tasks, you’ll develop a solid understanding of corporate structure and risk management.</p>
+          <h3>Suggested tools</h3>
+          <ul class="suggested-tools">
+            <li>Company law resources (e.g., UK Companies Act, Delaware General Corporation Law)</li>
+            <li>Corporate governance codes and guidance (e.g., UK Corporate Governance Code)</li>
+            <li>Board resolution templates</li>
+            <li>Compliance checklists</li>
+            <li>Risk management frameworks</li>
+          </ul>
+        </section>
+        <section class="guided">
+          <h2>Guided tasks</h2>
+          <ol>
+            <li><strong>Entity comparison:</strong> Create a comparison chart of common business structures (e.g., sole proprietorship, partnership, limited company and corporation). List the advantages, disadvantages and key legal requirements of each.</li>
+            <li><strong>Governance audit:</strong> Select a public company and review its corporate governance statement. Identify how it complies with relevant codes (such as the UK Corporate Governance Code) and note areas of best practice.</li>
+            <li><strong>Board resolution drafting:</strong> Draft a board resolution approving a major transaction (for example, the acquisition of another company). Include recitals, the resolutions themselves and signature blocks.</li>
+            <li><strong>Compliance checklist:</strong> Prepare a compliance checklist for a fictional company operating in a regulated sector (e.g., financial services or healthcare). Highlight filing deadlines and ongoing obligations.</li>
+            <li><strong>Risk management report:</strong> Write a brief report identifying potential corporate compliance risks faced by start‑ups and propose strategies to mitigate those risks.</li>
+          </ol>
+          <p class="tip">Tip: Schedule your research and drafting sessions over multiple days rather than attempting to tackle everything in a single afternoon. Spacing out the work helps you absorb the material and refine your documents.</p>
+          <p class="help">Need help getting started? Break each task into smaller steps, explore publicly available annual reports for examples and ask ChatGPT to clarify complex governance concepts. Practise iteratively and track your progress.</p>
+        </section>
+        <section class="submit">
+          <h2>What to submit</h2>
+          <ul>
+            <li>Your business entity comparison chart</li>
+            <li>A governance audit summary</li>
+            <li>A drafted board resolution</li>
+            <li>A compliance checklist for your fictional company</li>
+            <li>A short risk management report</li>
+          </ul>
+          <p>Email your work to <a href="mailto:Finlay@experience4grads.co.uk">Finlay@experience4grads.co.uk</a>. We’ll review your submission within 48 hours. If approved, you’ll receive a certificate and a LinkedIn endorsement.</p>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; <span id="year"></span> Experience4Grads – All rights reserved.</p>
+    </footer>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

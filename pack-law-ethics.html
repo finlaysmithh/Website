@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ethics &amp; Professional Responsibility Pack | Experience4Grads</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Base styling */
+      body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: linear-gradient(135deg, #0a4e92, #e64a19); }
+      header { display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: linear-gradient(135deg, #0a4e92, #e64a19); color: #ffffff; }
+      header img { height: 40px; }
+      header nav a { margin: 0 0.5rem; color: #ffffff; text-decoration: none; font-weight: 600; }
+      /* Container with gradient border matching the Skills page */
+      .pack-container { max-width: 1000px; margin: 2rem auto; padding: 2rem; border: 6px solid transparent; border-image: linear-gradient(45deg, #0a4e92, #e64a19) 1; border-radius: 12px; background-color: #ffffff; }
+      /* Section styling for goal, guided tasks and submission */
+      .goal, .guided, .submit { margin-bottom: 2rem; }
+      .goal h2, .guided h2, .submit h2 { color: #0a4e92; margin-top: 1.5rem; font-size: 1.5rem; }
+      .goal h3 { color: #e64a19; margin-top: 1rem; font-size: 1.2rem; }
+      .suggested-tools { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .suggested-tools li { background: #f0f8ff; border: 1px solid #e0e5ec; border-radius: 6px; padding: 0.25rem 0.5rem; font-size: 0.85rem; }
+      .guided ol { padding-left: 1.5rem; }
+      .submit ul { padding-left: 1.5rem; list-style: disc; }
+      .tip, .help { margin-top: 0.5rem; font-style: italic; color: #555; }
+      h1 { margin-top: 0; color: #0a4e92; font-size: 2rem; }
+      footer { margin-top: 3rem; padding: 1rem; text-align: center; background: #f7f7f7; }
+    </style>
+    <script>
+      // Redirect users who are not logged in or have not paid for a subscription
+      window.addEventListener('DOMContentLoaded', function () {
+        const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+        const subscribed = user && localStorage.getItem('subscriptionPaid_' + user) === 'true';
+        if (!user || !subscribed) {
+          window.location.href = 'skills.html#subscribe';
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <a href="index.html"><img src="logo.jpeg" alt="Experience4Grads logo" /></a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="jobs.html">Micro‑Internships</a>
+        <a href="skills.html">Skills &amp; CV</a>
+      </nav>
+    </header>
+    <main>
+      <div class="pack-container">
+        <h1>Ethics &amp; Professional Responsibility</h1>
+        <p>This pack emphasises the ethical obligations and professional standards expected of legal practitioners. You will explore scenarios that raise ethical dilemmas and learn how to resolve them in accordance with professional rules.</p>
+        <section class="goal">
+          <h2>Goal (≈10 hours)</h2>
+          <p>Spend approximately ten hours examining the core principles of legal ethics, analysing conflict scenarios and preparing materials to help others understand ethical obligations. By the end, you’ll be equipped to recognise and address ethical issues confidently.</p>
+          <h3>Suggested tools</h3>
+          <ul class="suggested-tools">
+            <li>Professional conduct codes (e.g., SRA Code of Conduct, ABA Model Rules)</li>
+            <li>Ethics opinions and guidance notes</li>
+            <li>Confidentiality and conflict checklists</li>
+            <li>Case law databases on legal ethics</li>
+            <li>Presentation software (e.g., PowerPoint, Google Slides)</li>
+          </ul>
+        </section>
+        <section class="guided">
+          <h2>Guided tasks</h2>
+          <ol>
+            <li><strong>Code of conduct research:</strong> Find the professional conduct rules governing lawyers in your jurisdiction (e.g., the Solicitors Regulation Authority’s Codes of Conduct in England and Wales). Summarise the main duties imposed on solicitors.</li>
+            <li><strong>Conflict of interest analysis:</strong> Consider a scenario where you are asked to act for two clients whose interests may conflict. Identify the potential conflict and outline the steps you must take under the professional rules.</li>
+            <li><strong>Draft an ethics opinion:</strong> Write a short opinion advising a colleague on how to handle a client who insists on pursuing an unmeritorious claim. Explain the ethical issues involved and your recommended course of action.</li>
+            <li><strong>Confidentiality scenario:</strong> Imagine you are representing a client who admits to having committed a crime. Discuss what information you can disclose to authorities and what remains protected by confidentiality.</li>
+            <li><strong>Ethics training presentation:</strong> Create an outline for a training session on professional responsibility for newly qualified lawyers. Include topics such as client care, communication, honesty and integrity.</li>
+          </ol>
+          <p class="tip">Tip: Tackle these tasks in stages. Reflect on each scenario and revisit the relevant rules before drafting your responses.</p>
+          <p class="help">Need help getting started? Break each task into smaller parts, consult ethics opinions for guidance and ask ChatGPT to explain any confusing professional duties. Practise iteratively and document your progress.</p>
+        </section>
+        <section class="submit">
+          <h2>What to submit</h2>
+          <ul>
+            <li>A summary of the professional duties and core principles</li>
+            <li>Your conflict of interest analysis</li>
+            <li>An ethics opinion letter</li>
+            <li>Notes on the confidentiality scenario</li>
+            <li>An outline or slides for your ethics training presentation</li>
+          </ul>
+          <p>Email your work to <a href="mailto:Finlay@experience4grads.co.uk">Finlay@experience4grads.co.uk</a>. We’ll review your submission within 48 hours. If approved, you’ll receive a certificate and a LinkedIn endorsement.</p>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; <span id="year"></span> Experience4Grads – All rights reserved.</p>
+    </footer>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

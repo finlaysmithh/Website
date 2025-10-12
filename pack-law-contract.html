@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contract Drafting &amp; Negotiation Pack | Experience4Grads</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Base font and reset */
+      body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: linear-gradient(135deg, #0a4e92, #e64a19); }
+      /* Header styled with gradient matching the main site */
+      header { display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: linear-gradient(135deg, #0a4e92, #e64a19); color: #ffffff; }
+      header img { height: 40px; }
+      header nav a { margin: 0 0.5rem; color: #ffffff; text-decoration: none; font-weight: 600; }
+      /* Container with gradient border matching the Skills page */
+      .pack-container { max-width: 1000px; margin: 2rem auto; padding: 2rem; border: 6px solid transparent; border-image: linear-gradient(45deg, #0a4e92, #e64a19) 1; border-radius: 12px; background-color: #ffffff; }
+      /* Section styling for goal, guided tasks and submission */
+      .goal, .guided, .submit { margin-bottom: 2rem; }
+      .goal h2, .guided h2, .submit h2 { color: #0a4e92; margin-top: 1.5rem; font-size: 1.5rem; }
+      .goal h3 { color: #e64a19; margin-top: 1rem; font-size: 1.2rem; }
+      .suggested-tools { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .suggested-tools li { background: #f0f8ff; border: 1px solid #e0e5ec; border-radius: 6px; padding: 0.25rem 0.5rem; font-size: 0.85rem; }
+      .guided ol { padding-left: 1.5rem; }
+      .submit ul { padding-left: 1.5rem; list-style: disc; }
+      .tip, .help { margin-top: 0.5rem; font-style: italic; color: #555; }
+      h1 { margin-top: 0; color: #0a4e92; font-size: 2rem; }
+      footer { margin-top: 3rem; padding: 1rem; text-align: center; background: #f7f7f7; }
+    </style>
+    <script>
+      // Redirect users who are not logged in or have not paid for a subscription
+      window.addEventListener('DOMContentLoaded', function () {
+        const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+        const subscribed = user && localStorage.getItem('subscriptionPaid_' + user) === 'true';
+        if (!user || !subscribed) {
+          // If not logged in or not subscribed, send the user back to the subscription section
+          window.location.href = 'skills.html#subscribe';
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <a href="index.html"><img src="logo.jpeg" alt="Experience4Grads logo" /></a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="jobs.html">Micro‑Internships</a>
+        <a href="skills.html">Skills &amp; CV</a>
+      </nav>
+    </header>
+    <main>
+      <div class="pack-container">
+        <h1>Contract Drafting &amp; Negotiation</h1>
+        <p>This pack focuses on drafting clear, enforceable contracts and developing negotiation skills. You will learn how to structure agreements, identify key clauses and negotiate terms effectively.</p>
+        <section class="goal">
+          <h2>Goal (≈10 hours)</h2>
+          <p>Over roughly ten hours, you will practise drafting simple agreements from scratch, analyse contractual clauses and refine your negotiation technique. By the end, you should feel comfortable putting together a basic contract and redlining one to protect a client’s interests.</p>
+          <h3>Suggested tools</h3>
+          <ul class="suggested-tools">
+            <li>Standard contract templates (e.g., NDA, services agreement)</li>
+            <li>Legal dictionary or glossary</li>
+            <li>Document editing &amp; redlining software (Word, Google Docs)</li>
+            <li>Contract comparison checklist</li>
+            <li>Online negotiation training resources</li>
+          </ul>
+        </section>
+        <section class="guided">
+          <h2>Guided tasks</h2>
+          <ol>
+            <li><strong>Draft a basic agreement:</strong> Prepare a simple non‑disclosure agreement (NDA) between two parties. Ensure it includes clear definitions, obligations, exclusions and a termination clause.</li>
+            <li><strong>Identify key clauses:</strong> Review a sample services contract. Highlight and explain the significance of clauses relating to payment, liability, termination and dispute resolution.</li>
+            <li><strong>Negotiate and redline:</strong> Exchange your NDA with a peer and identify terms to negotiate. Use redline markup to propose changes and negotiate until both parties reach agreement.</li>
+            <li><strong>Benchmark against templates:</strong> Compare your drafted contract against a professionally drafted template. Note any missing provisions or differences in wording and discuss why they might matter.</li>
+            <li><strong>Summarise negotiation points:</strong> Write a short report summarising the key negotiation issues, your final agreed terms and any compromises made.</li>
+          </ol>
+          <p class="tip">Tip: Spread your drafting and review sessions over several days rather than cramming them into one sitting. Taking breaks between iterations will help you spot errors and opportunities for improvement.</p>
+          <p class="help">Need help getting started? Break each task down into smaller steps, explore free contract templates online and ask ChatGPT to explain unfamiliar terms. Practise iteratively and document your progress as you go.</p>
+        </section>
+        <section class="submit">
+          <h2>What to submit</h2>
+          <ul>
+            <li>Your drafted NDA</li>
+            <li>An annotated contract highlighting key clauses</li>
+            <li>A redlined version showing negotiated changes</li>
+            <li>Your benchmarking notes comparing your draft to a template</li>
+            <li>A short report summarising negotiation points and compromises</li>
+          </ul>
+          <p>Email your work to <a href="mailto:Finlay@experience4grads.co.uk">Finlay@experience4grads.co.uk</a>. We’ll review your submission within 48 hours. If approved, you’ll receive a certificate and a LinkedIn endorsement.</p>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; <span id="year"></span> Experience4Grads – All rights reserved.</p>
+    </footer>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
