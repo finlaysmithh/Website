@@ -4,9 +4,9 @@
 
 
 
----
+---![Image 18-10-2025 at 16 26](https://github.com/user-attachments/assets/bc74d963-cea5-4380-98cb-89c2b5fee0ab)
 
-<img width="1691" height="988" alt="Screenshot 2025-10-02 at 22 57 11" src="https://github.com/user-attachments/assets/e6149e72-5835-41e8-9429-df1c0fdacd50" />
+
 
 ## Overview
 Experience4Grads is a fast static site showcasing skills packs and micro-work opportunities for graduates and businesses.
